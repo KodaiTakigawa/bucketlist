@@ -16,10 +16,8 @@
         <div class="col-8">
           <h1>1.I want to visit all over the world.</h1>
         </div>
-        <div class="col-4">
-          <a class="btn btn-primary float-right mr-3" href="#">edit</a>
-        </div>
       </div>
+<!-- dream detail -->
       <div class="dream-detail">
         <h2>Detail</h2>
         <p>

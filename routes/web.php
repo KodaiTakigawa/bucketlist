@@ -20,6 +20,7 @@
 Route::get('/', 'MainController@index');
 
 Route::get('/mypage', 'MainController@mypage');
+Route::post('/mypage', 'MainController@mypage');
 
 Route::get('/mypage/mydream', 'MainController@mydream');
 

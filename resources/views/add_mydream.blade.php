@@ -12,17 +12,18 @@
 
     <!-- dream -->
     <div class="container">
-      <div class="form-group">
-        <label for="addYourDream"><h1>Add your dreams</h1></label>
-        <input class="form-control form-control-lg" id="addYourDream" type="text" placeholder="Your Dream">
-      </div>
-      <div class="form-group">
-        <label for="dreamDetail"><h2>Detail</h2></label>
-        <textarea class="form-control" id="dreamDetail" rows="10"></textarea>
-      </div>
-      <div class="float-right mb-3">
-        <a class="btn btn-outline-secondary" href="#">add</a>
-      </div>
+      <form action="/mypage" method="post">
+        {{ csrf_field() }}
+        <div class="form-group">
+          <label for="addYourDream"><h1>Add your dreams</h1></label>
+          <input class="form-control form-control-lg" id="addYourDream" type="text" placeholder="Your Dream">
+        </div>
+        <div class="form-group">
+          <label for="dreamDetail"><h2>Detail</h2></label>
+          <textarea class="form-control" id="dreamDetail" rows="10"></textarea>
+        </div>
+        <button type="submit" class="btn btn-outline-secondary float-right mb-3">Add</button>
+      </form>
     </div>
 
   </body>

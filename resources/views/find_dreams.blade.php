@@ -25,8 +25,8 @@
       <div class="row">
         <div class="card mx-auto">
           <div class="card-body">
-            <img src="img/profile1.jpg" alt="Avatar" class="avatar-card float-left">
-            <p >I want to be eaten.</p>
+            <a href="/find-dreams/profile"><img src="img/profile1.jpg" alt="Avatar" class="avatar-card float-left"></a>
+            <a href="/find-dreams/detail" class="text-dark float-left"><p class="mb-0 p-2">I want to be eaten.</p></a>
             <div class="float-right">
               <div class="good-button">
                 <p class="float-right">777</p>

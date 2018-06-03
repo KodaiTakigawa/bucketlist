@@ -13,12 +13,18 @@
 
     <!-- dream -->
     <div class="container">
-      <div class="row dream-title  pb-3">
-        <div class="col-7">
+      <div class="row dream-title">
+        <div class="col-10">
           <h1>I want to be eaten</h1>
+          <div class="d-flex justify-content-end">
+            <div class="good-button">
+              <p class="float-right pt-3 pb-0">777</p>
+              <img src="{{ asset('img/fire.png') }}" style="width">
+            </div>
+          </div>
         </div>
-        <div class="col-5">
-          <img src="{{ asset('img/profile1.jpg') }}" alt="Avatar" class="avatar mr-3">
+        <div class="col-2">
+          @include('layouts.avatar')
         </div>
       </div>
       <div class="dream-detail">
