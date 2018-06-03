@@ -25,12 +25,36 @@
   padding: 1.7rem;
 }
 
+/* list-title */
 
 .list-name {
   border-top: solid;
   border-bottom: double;
   text-align: center;
 }
+
+#add {
+  position: relative;
+  right: .5rem;
+  bottom: 2.7rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  color: #000;
+  border: solid thin #000;
+  text-align: center;
+}
+
+#add p {
+  position: relative;
+  margin: 0px;  /*これを追加*/
+  top:50%;
+  transform: translateY(-50%);
+  font-size: 4rem;
+}
+
+
+/* dream list card */
 
 .card {
   width: 40rem;
