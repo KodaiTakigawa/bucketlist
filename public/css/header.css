@@ -1,0 +1,40 @@
+.navbar {
+  width:auto;
+  text-align : center;
+  box-shadow: 0 1px 10px #707070;
+  margin: 0 0 0 0;
+  padding: .1rem .5rem;
+}
+
+.navbar-brand {
+  padding-top: 0px;
+  font-size: 30px;
+}
+
+
+.form-inline {
+  margin-top: 10rem;
+}
+
+.d-flex {
+  padding-bottom: 5rem;
+}
+
+
+
+/*social  button*/
+.mx-auto{
+  padding: 15px;
+  text-align: center;
+  width: auto;
+  margin: 0;
+}
+
+.social-login-btn {
+  padding: .7em 100px;
+  border-radius: 20px;
+}
+
+.container {
+  padding-bottom: 70px;
+}

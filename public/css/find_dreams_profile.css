@@ -1,0 +1,23 @@
+
+
+.avatar {
+  position: relative;
+}
+
+.social-icons {
+  position: absolute;
+  right: 2rem;
+  bottom: -1.5rem;
+}
+
+.social-icon-facebook {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin: 0;
+}
+
+.social-icon-twitter {
+  width: 2rem;
+  height: 2rem;
+  margin: 0;
+}

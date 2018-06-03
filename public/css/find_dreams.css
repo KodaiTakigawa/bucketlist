@@ -1,0 +1,32 @@
+.card {
+  height: 3.5rem;
+}
+
+.card-body {
+  padding-top: 0;
+  padding-bottom: 0;
+  height: auto;
+}
+
+.card-body > p {
+  padding: .8rem;
+  margin-bottom: 0;
+}
+
+img {
+  margin: 1rem 0rem;
+}
+
+.good-button > p {
+  padding: .7rem;
+  margin-bottom: 0;
+}
+
+
+.avatar-card {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  float: right;
+  margin: .5rem;
+}
