@@ -35,3 +35,11 @@ Route::get('/find-dreams/detail', 'MainController@findDreamsDetail');
 Route::get('/find-dreams/profile', 'MainController@findDreamsProfile');
 
 Route::get('/find-dreams/profile/achivedlist', 'MainController@findDreamsProfileAchivedlist');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+// for social_login
+Route::get('login/{provider}',          'Auth\SocialAccountController@redirectToProvider');
+Route::get('login/{provider}/callback', 'Auth\SocialAccountController@handleProviderCallback');
