@@ -30,7 +30,7 @@
       <div class="dream-detail">
         <h2>Detail</h2>
         <p>
-          たべられたい
+          たべtai
         </p>
       </div>
     </div>
