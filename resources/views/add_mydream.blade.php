@@ -12,16 +12,17 @@
 
     <!-- dream -->
     <div class="container">
-      <form action="/mypage" method="post">
+      <form action="/mypage/add-mydream" method="post">
         {{ csrf_field() }}
         <div class="form-group">
-          <label for="addYourDream"><h1>Add your dreams</h1></label>
-          <input class="form-control form-control-lg" id="addYourDream" type="text" placeholder="Your Dream">
+          <label for="addYourDream"><h1>Add your dream</h1></label>
+          <input class="form-control form-control-lg" id="addYourDream" type="text" placeholder="Title" name="title">
         </div>
         <div class="form-group">
           <label for="dreamDetail"><h2>Detail</h2></label>
-          <textarea class="form-control" id="dreamDetail" rows="10"></textarea>
+          <textarea class="form-control" id="dreamDetail" rows="10" name="detail"></textarea>
         </div>
+        <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
         <button type="submit" class="btn btn-outline-secondary float-right mb-3">Add</button>
       </form>
     </div>

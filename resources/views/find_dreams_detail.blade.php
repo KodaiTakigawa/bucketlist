@@ -15,22 +15,24 @@
     <div class="container">
       <div class="row dream-title">
         <div class="col-10">
-          <h1>I want to be eaten</h1>
+          <h1>{{$dream->title}}</h1>
           <div class="d-flex justify-content-end">
             <div class="good-button">
-              <p class="float-right pt-3 pb-0">777</p>
+              <p class="float-right pt-3 pb-0">{{$dream->good}}</p>
               <img src="{{ asset('img/fire.png') }}" style="width">
             </div>
           </div>
         </div>
+        @if(isset($dream->user->id) && isset($dream->user->icon_url))
         <div class="col-2">
-          @include('layouts.avatar')
+          <a href="/find-dreams/profile?id={{$dream->user->id}}"><img src="{{$dream->user->icon_url}}" alt="Avatar" class="avatar mr-3"></a>
         </div>
+        @endif
       </div>
       <div class="dream-detail">
         <h2>Detail</h2>
         <p>
-          たべtai
+          {{$dream->detail}}
         </p>
       </div>
     </div>

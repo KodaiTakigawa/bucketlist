@@ -20,11 +20,11 @@
 Route::get('/', 'MainController@index');
 
 Route::get('/mypage', 'MainController@mypage');
-Route::post('/mypage', 'MainController@mypage');
 
 Route::get('/mypage/mydream', 'MainController@mydream');
 
 Route::get('/mypage/add-mydream', 'MainController@addMydream');
+Route::post('/mypage/add-mydream', 'MainController@createMydream');
 
 Route::get('/mypage/achivedlist', 'MainController@achivedList');
 

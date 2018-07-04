@@ -12,16 +12,13 @@
     <div class="d-flex justify-content-center">
       <form class="form-inline" action="/find-dreams" method="get">
         {{ csrf_field() }}
-        <input class="form-control form-control-lg mr-sm-2" type="search" name="dreams" placeholder="Dream" aria-label="Search" size="60%">
+        <input class="form-control form-control-lg mr-sm-2" type="search" name="search" placeholder="Dream" aria-label="Search" size="60%">
         <button class="btn btn-outline-success button-control-lg my-2 my-sm-0" type="submit">Search</button>
       </form>
     </div>
     <div class="container">
       <div class="mx-auto" style="width: 400px;">
-        <a class="btn btn-info social-login-btn" href="/mypage" role="button">Login with Twitter</a>
-      </div>
-      <div class="mx-auto" style="width: 400px;">
-        <a class="btn btn-info social-login-btn" href="/mypage" role="button">Login with Facebook</a>
+        <a class="btn btn-info social-login-btn" href="/login/twitter" role="button">Login with Twitter</a>
       </div>
     </div>
     <div class="container">

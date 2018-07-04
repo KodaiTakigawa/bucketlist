@@ -16,16 +16,18 @@
     <div class="container">
       <div class="row">
         <div class="col-5">
-          <img src="{{ asset('img/profile1.jpg') }}" alt="Avatar" class="avatar">
+          <img src="{{$user->icon_url}}" alt="Avatar" class="avatar">
           <div class="social-icons">
             <a href="#"><img src="{{ asset('img/f-ogo_RGB_HEX-58.png') }}" alt="facebook" class="social-icon-facebook"></a>
             <a href="#"><img src="{{ asset('img/Twitter_Logo_Blue.png') }}" alt="twitter" class="social-icon-twitter"></a>
           </div>
         </div>
         <div class="col-7">
-          <h1>パイ包みハンバーグ</h1>
-          <p>私はハンバーグです。美味しく食べられたいです。</p>
-          <a href="#"><p>叶えた夢の数：29</p></a>
+          <h1>{{$user->name}}</h1>
+          @if(isset($user->description))
+          <p>{{$user->description}}</p>
+          @endif
+          <a href="/find-dreams/profile/achivedlist?id={{$user->id}}"><p>叶えた夢の数：{{$achievementNum}}</p></a>
         </div>
       </div>
     </div>
@@ -33,84 +35,21 @@
       <h2 class="list-name">LIST</h2>
     </div>
     <div class="container">
+      @foreach($dreams as $dream)
       <div class="row">
         <div class="card mx-auto">
           <div class="card-body">
-            <p >I want to visit all over the world.</p>
+            <p>{{$dream->title}}</p>
             <div class="float-right">
               <div class="good-button">
-                <p class="float-right">777</p>
+                <p class="float-right">{{$dream->good}}</p>
                 <img src="{{ asset('img/fire.png') }}" style="width">
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="card mx-auto">
-          <div class="card-body">
-            <p >I want to visit all over the world.</p>
-            <div class="float-right">
-              <div class="good-button">
-                <p class="float-right">777</p>
-                <img src="{{ asset('img/fire.png') }}" style="width">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="card mx-auto">
-          <div class="card-body">
-            <p >I want to visit all over the world.</p>
-            <div class="float-right">
-              <div class="good-button">
-                <p class="float-right">777</p>
-                <img src="{{ asset('img/fire.png') }}" style="width">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="card mx-auto">
-          <div class="card-body">
-            <p >I want to visit all over the world.</p>
-            <div class="float-right">
-              <div class="good-button">
-                <p class="float-right">777</p>
-                <img src="{{ asset('img/fire.png') }}" style="width">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="card mx-auto">
-          <div class="card-body">
-            <p >I want to visit all over the world.</p>
-            <div class="float-right">
-              <div class="good-button">
-                <p class="float-right">777</p>
-                <img src="{{ asset('img/fire.png') }}" style="width">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="card mx-auto">
-          <div class="card-body">
-            <p >I want to visit all over the world.</p>
-            <div class="float-right">
-              <div class="good-button">
-                <p class="float-right">777</p>
-                <img src="{{ asset('img/fire.png') }}" style="width">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      @endforeach
     </div>
   </body>
   <script src="js/app.js"></script>
