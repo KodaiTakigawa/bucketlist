@@ -36,7 +36,7 @@
       <div class="row">
         <div class="card mx-auto">
           <div class="card-body">
-            <a href="/mypage/mydream" class="text-dark float-left"><p>{{$mydream->title}}</p></a>
+            <a href="/mypage/mydream?id={{$mydream->id}}" class="text-dark float-left"><p>{{$mydream->title}}</p></a>
             <div class="float-right">
               <div class="good-button">
                 <p class="float-right">{{$mydream->good}}</p>

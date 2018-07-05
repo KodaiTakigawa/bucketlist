@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Dream;
 use App\User;
+use App\LinkedSocialAccount;
 
 class MainController extends Controller
 {
@@ -15,13 +16,14 @@ class MainController extends Controller
     }
 
     function mypage(Request $request){
-      $mydreams = Dream::where('user_id', 8)->get();
+      $mydreams = Dream::where('user_id', 8)->where('achievement', 'f')->get();
       $achivementNum = Dream::where('user_id', 8)->where('achievement', 't')->count();
       return view('mypage', ['mydreams' => $mydreams, 'achivementNum' => $achivementNum]);
     }
 
-    function mydream(){
-      return view('mydream');
+    function mydream(Request $request){
+      $dream = Dream::where('id', $request->id)->first();
+      return view('mydream',['dream' => $dream]);
     }
 
     function addMydream(Request $request){
@@ -67,7 +69,8 @@ class MainController extends Controller
       $user = User::where('id', $user_id)->first();
       $dreams = Dream::where('user_id', $user_id)->get();
       $achievementNum = Dream::where('user_id', $user_id)->where('achievement', 't')->count();
-      return view('find_dreams_profile', ['dreams' => $dreams, 'achievementNum' => $achievementNum, 'user' => $user]);
+      $twitter_id = LinkedSocialAccount::where('user_id', $user_id)->first()->provider_id;
+      return view('find_dreams_profile', ['dreams' => $dreams, 'achievementNum' => $achievementNum, 'user' => $user, 'twitter_id' => $twitter_id]);
     }
 
     function findDreamsProfileachivedList(Request $request){

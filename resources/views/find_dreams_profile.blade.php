@@ -19,7 +19,7 @@
           <img src="{{$user->icon_url}}" alt="Avatar" class="avatar">
           <div class="social-icons">
             <a href="#"><img src="{{ asset('img/f-ogo_RGB_HEX-58.png') }}" alt="facebook" class="social-icon-facebook"></a>
-            <a href="#"><img src="{{ asset('img/Twitter_Logo_Blue.png') }}" alt="twitter" class="social-icon-twitter"></a>
+            <a href="https://twitter.com/intent/user?user_id={{$twitter_id}}"><img src="{{ asset('img/Twitter_Logo_Blue.png') }}" alt="twitter" class="social-icon-twitter"></a>
           </div>
         </div>
         <div class="col-7">
@@ -39,7 +39,7 @@
       <div class="row">
         <div class="card mx-auto">
           <div class="card-body">
-            <p>{{$dream->title}}</p>
+            <a href="/find-dreams/detail?id={{$dream->id}}" class="text-dark float-left"><p>{{$dream->title}}</p></a>
             <div class="float-right">
               <div class="good-button">
                 <p class="float-right">{{$dream->good}}</p>

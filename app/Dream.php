@@ -13,10 +13,5 @@ class Dream extends Model
   public function user(){
     return $this->belongsTo('App\User');
   }
-
-  public function getIcon(){
-    $user_icon = $this->user->icon_url;
-    return $user_icon;
-  }
     //
 }

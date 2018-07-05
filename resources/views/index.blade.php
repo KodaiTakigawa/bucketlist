@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-@extends('layouts.navbar')
 <html>
   <head>
     <meta charset="utf-8">
@@ -24,8 +23,8 @@
     <div class="container">
       <h1>BucektListとは・・・</h1>
       <p>死ぬまでにしたい100のことを書くリストです。<br></p>
-      <p>同じ夢を持った人を探せます。</p>
-      <p>あなたの夢を登録して、夢仲間を見つけよう！</p>
+      <p>同じ夢や目標を持った人に出会えます。</p>
+      <p>あなたの夢や目標を登録して、仲間を見つけよう！</p>
     </div>
   </body>
   <script src="js/app.js"></script>
