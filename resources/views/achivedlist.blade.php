@@ -34,7 +34,7 @@
       <div class="row">
         <div class="card mx-auto">
           <div class="card-body pb-0">
-            <p>{{$achievedDream->title}}</p>
+            <a href="/mypage/mydream?dream_id={{$achievedDream->id}}" class="text-dark float-left"><p>{{$achievedDream->title}}</p></a>
             <div class="float-right">
               <div class="good-button">
                 <p class="float-right">{{$achievedDream->good}}</p>

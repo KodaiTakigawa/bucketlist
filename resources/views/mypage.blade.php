@@ -18,7 +18,21 @@
           <img src="{{Auth::user()->icon_url}}" alt="Avatar" class="avatar">
         </div>
         <div class="col-sm-7">
-          <h1>{{Auth::user()->name}}</h1>
+          <div class="d-inline-flex pb-0">
+            <div class="mr-auto p-2">
+              <h1>{{Auth::user()->name}}</h1>
+            </div>
+            <div class="p-2">
+              <a class="btn btn-outline-secondary" href="/mypage/edit">Edit Profile</a>
+            </div>
+          </div>
+          <div class="d-flex pb-0">
+            <div class="w-50 p-2">
+              @if(isset(Auth::user()->description))
+              <p>{{Auth::user()->description}}</p>
+              @endif
+            </div>
+          </div>
           <p>叶えた夢の数：{{$achivementNum}}</p>
         </div>
       </div>
@@ -36,13 +50,13 @@
       <div class="row">
         <div class="card mx-auto">
           <div class="card-body">
-            <a href="/mypage/mydream?id={{$mydream->id}}" class="text-dark float-left"><p>{{$mydream->title}}</p></a>
+            <a href="/mypage/mydream?dream_id={{$mydream->id}}" class="text-dark float-left"><p>{{$mydream->title}}</p></a>
             <div class="float-right">
               <div class="good-button">
                 <p class="float-right">{{$mydream->good}}</p>
                 <img src="img/fire.png" style="width">
               </div>
-               <a href="/mypage/achivedlist?id={{Auth::user()->id}}&dreamId={{$mydream->id}}" class="btn btn-success">Achievement</a>
+               <a href="/mypage/achivedlist?id={{Auth::user()->id}}&dream_id={{$mydream->id}}" class="btn btn-success">Achievement</a>
             </div>
           </div>
         </div>

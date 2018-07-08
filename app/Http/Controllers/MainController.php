@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Dream;
 use App\User;
 use App\LinkedSocialAccount;
+use Auth;
 
 class MainController extends Controller
 {
@@ -16,13 +17,31 @@ class MainController extends Controller
     }
 
     function mypage(Request $request){
-      $mydreams = Dream::where('user_id', 8)->where('achievement', 'f')->get();
-      $achivementNum = Dream::where('user_id', 8)->where('achievement', 't')->count();
+      $user_id = Auth::user()->id;
+      $mydreams = Dream::where('user_id', $user_id)->where('achievement', 'f')->get();
+      $achivementNum = Dream::where('user_id', $user_id)->where('achievement', 't')->count();
       return view('mypage', ['mydreams' => $mydreams, 'achivementNum' => $achivementNum]);
     }
 
+    function editMyprofile(){
+      $user_id = Auth::user()->id;
+      $mydreams = Dream::where('user_id', $user_id)->where('achievement', 'f')->get();
+      $achivementNum = Dream::where('user_id', $user_id)->where('achievement', 't')->count();
+      return view('mypage_edit', ['mydreams' => $mydreams, 'achivementNum' => $achivementNum]);
+    }
+
+    function updateMypage(Request $request){
+      // for update
+      $user_id = Auth::user()->id;
+      $user = User::find($user_id);
+      $form = $request->all();
+      unset($form['_token']);
+      $user->fill($form)->save();
+      return redirect('/mypage');
+    }
+
     function mydream(Request $request){
-      $dream = Dream::where('id', $request->id)->first();
+      $dream = Dream::find($request->dream_id);
       return view('mydream',['dream' => $dream]);
     }
 
@@ -40,14 +59,33 @@ class MainController extends Controller
       return redirect('/mypage');
     }
 
+    function editMydream(Request $request){
+      $dream_id = $request->dream_id;
+      $dream = Dream::find($dream_id);
+      return view('mydream_edit', ['mydream' => $dream]);
+    }
+
+    function updateMydream(Request $request){
+      $dream_id = $request->dream_id;
+      $dream = Dream::find($dream_id);
+      if ($request->action == 'save') {
+        $form = $request->all();
+        unset($form['_token']);
+        $dream->fill($form)->save();
+      } elseif ($request->action == 'delete') {
+        $dream->delete();
+      }
+      return redirect()->action('MainController@mypage');
+    }
+
     function achivedList(Request $request){
       $user_id = $request->id;
       $user = User::where('id', $user_id)->first();
       // update achievemet
-      $achievedDream = Dream::find($request->dreamId);
+      $achievedDream = Dream::find($request->dream_id);
       $achievedDream->achievement = 't';
       $achievedDream->save();
-
+      //for show
       $achievementNum = Dream::where('user_id', $user_id)->where('achievement', 't')->count();
       $achievedDreams = Dream::where('user_id', $user_id)->where('achievement', 't')->get();
       return view('achivedlist', ['achievedDreams' => $achievedDreams, 'achievementNum' => $achievementNum, 'user' => $user]);

@@ -20,8 +20,15 @@
 Route::get('/', 'MainController@index');
 
 Route::get('/mypage', 'MainController@mypage');
+Route::post('/mypage', 'MainController@mypage');
+
+Route::get('/mypage/edit', 'MainController@editMyprofile');
+//Route::post('/mypage/edit', 'MainController@updateMypage');
 
 Route::get('/mypage/mydream', 'MainController@mydream');
+Route::post('/mypage/mydream', 'MainController@updateMydream');
+
+Route::get('/mypage/mydream/edit', 'MainController@editMydream');
 
 Route::get('/mypage/add-mydream', 'MainController@addMydream');
 Route::post('/mypage/add-mydream', 'MainController@createMydream');

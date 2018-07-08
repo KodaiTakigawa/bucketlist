@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Dream extends Model
 {
   protected $fillable = [
-      'title', 'detail', 'good', 'achivement', 'user_id',
+      'title', 'detail', 'good', 'achievement', 'user_id',
   ];
 
   public function user(){
