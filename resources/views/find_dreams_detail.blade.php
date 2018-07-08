@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
     <title>mydream</title>
+    <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/mydream.css') }}">
     <link rel="stylesheet" href="{{ asset('css/find_dreams.css') }}">
   </head>
   <body>
@@ -13,21 +13,24 @@
 
     <!-- dream -->
     <div class="container">
-      <div class="row dream-title">
-        <div class="col-10">
-          <h1>{{$dream->title}}</h1>
-          <div class="d-flex justify-content-end">
-            <div class="good-button">
-              <p class="float-right pt-3 pb-0">{{$dream->good}}</p>
-              <img src="{{ asset('img/fire.png') }}" style="width">
+      <div class="pb-3" style="border-bottom: solid #707070;">
+        <div class="d-flex">
+          <div class=" align-self-center p-2">
+            <h1>{{$dream->title}}</h1>
+          </div>
+          <div class="mr-auto align-self-center p-2">
+            <div class="d-flex">
+              <div class="good-button btn" id="good_button">
+                <div class="invisible" id="dream_id" value="{{$dream->id}}"></div>
+                <img src="{{ asset('img/fire.png') }}">
+              </div>
+              <p class="align-self-center pt-3" id="good_num">{{$dream->good}}</p>
             </div>
           </div>
+          <div class="p-2">
+            <a href="/find-dreams/profile?id={{$dream->user->id}}"><img src="{{$dream->user->icon_url}}" alt="Avatar" class="avatar mr-3"></a>
+          </div>
         </div>
-        @if(isset($dream->user->id) && isset($dream->user->icon_url))
-        <div class="col-2">
-          <a href="/find-dreams/profile?id={{$dream->user->id}}"><img src="{{$dream->user->icon_url}}" alt="Avatar" class="avatar mr-3"></a>
-        </div>
-        @endif
       </div>
       <div class="dream-detail">
         <h2>Detail</h2>
@@ -36,7 +39,8 @@
         </p>
       </div>
     </div>
-
-
   </body>
+
+  <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+  <script type="text/javascript" src="{{ asset('js/count_good.js') }}"></script>
 </html>

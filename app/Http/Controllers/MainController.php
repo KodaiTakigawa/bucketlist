@@ -23,7 +23,7 @@ class MainController extends Controller
       return view('mypage', ['mydreams' => $mydreams, 'achivementNum' => $achivementNum]);
     }
 
-    function editMyprofile(){
+    function editMypage(){
       $user_id = Auth::user()->id;
       $mydreams = Dream::where('user_id', $user_id)->where('achievement', 'f')->get();
       $achivementNum = Dream::where('user_id', $user_id)->where('achievement', 't')->count();
@@ -62,12 +62,20 @@ class MainController extends Controller
     function editMydream(Request $request){
       $dream_id = $request->dream_id;
       $dream = Dream::find($dream_id);
+      $dream = Dream::where('user_id', Auth::user()->id)
+                ->where('id', $dream_id)
+                ->first();
+      if (isset($dream) == NULL) {
+        return '404';
+      }
       return view('mydream_edit', ['mydream' => $dream]);
     }
 
     function updateMydream(Request $request){
       $dream_id = $request->dream_id;
-      $dream = Dream::find($dream_id);
+      $dream = Dream::where('user_id', Auth::user()->id)
+                ->where('id', $dream_id)
+                ->first();
       if ($request->action == 'save') {
         $form = $request->all();
         unset($form['_token']);
@@ -79,8 +87,7 @@ class MainController extends Controller
     }
 
     function achivedList(Request $request){
-      $user_id = $request->id;
-      $user = User::where('id', $user_id)->first();
+      $user_id = Auth::user()->id;
       // update achievemet
       $achievedDream = Dream::find($request->dream_id);
       $achievedDream->achievement = 't';
@@ -88,7 +95,7 @@ class MainController extends Controller
       //for show
       $achievementNum = Dream::where('user_id', $user_id)->where('achievement', 't')->count();
       $achievedDreams = Dream::where('user_id', $user_id)->where('achievement', 't')->get();
-      return view('achivedlist', ['achievedDreams' => $achievedDreams, 'achievementNum' => $achievementNum, 'user' => $user]);
+      return view('achivedlist', ['achievedDreams' => $achievedDreams, 'achievementNum' => $achievementNum]);
     }
 
     function findDreams(Request $request){
@@ -117,6 +124,21 @@ class MainController extends Controller
       $achievementNum = Dream::where('user_id', $user_id)->where('achievement', 't')->count();
       $achievedDreams = Dream::where('user_id', $user_id)->where('achievement', 't')->get();
       return view('find_dreams_profile_achivedlist', ['achievedDreams' => $achievedDreams, 'achievementNum' => $achievementNum, 'user' => $user]);
+    }
+
+    function countGoods(Request $request){
+      if ($request->ajax()) {
+          // Ajaxである
+          $dream_id = $request->dream_id;
+          $dream = Dream::find($dream_id);
+          $good_num = $dream->good + 1;
+          $form =['good' => $good_num];
+          $dream->fill($form)->save();
+          return $good_num;
+      } else {
+          // Ajaxではない
+          return view('index');
+      }
     }
 
 }

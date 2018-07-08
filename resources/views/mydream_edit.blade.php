@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>mydream</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
@@ -10,7 +11,7 @@
     @include('layouts.navbar')
 
     <div class="container">
-      <form action="/mypage/mydream?dream_id={{$mydream->id}}" method="post">
+      <form action="/mypage/mydream/edit?dream_id={{$mydream->id}}" method="post">
         {{ csrf_field() }}
         <div class="form-group">
           <label for="addYourDream"><h1>Edit your dream</h1></label>

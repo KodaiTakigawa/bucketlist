@@ -19,21 +19,21 @@
 
 Route::get('/', 'MainController@index');
 
-Route::get('/mypage', 'MainController@mypage');
-Route::post('/mypage', 'MainController@mypage');
+Route::get('/mypage', 'MainController@mypage')->middleware('auth');
+Route::post('/mypage', 'MainController@mypage')->middleware('auth');
 
-Route::get('/mypage/edit', 'MainController@editMyprofile');
-//Route::post('/mypage/edit', 'MainController@updateMypage');
+Route::get('/mypage/edit', 'MainController@editMypage')->middleware('auth');
+Route::post('/mypage/edit', 'MainController@updateMypage')->middleware('auth');
 
-Route::get('/mypage/mydream', 'MainController@mydream');
-Route::post('/mypage/mydream', 'MainController@updateMydream');
+Route::get('/mypage/mydream', 'MainController@mydream')->middleware('auth');
 
-Route::get('/mypage/mydream/edit', 'MainController@editMydream');
+Route::get('/mypage/mydream/edit', 'MainController@editMydream')->middleware('auth');
+Route::post('/mypage/mydream/edit', 'MainController@updateMydream')->middleware('auth');
 
-Route::get('/mypage/add-mydream', 'MainController@addMydream');
-Route::post('/mypage/add-mydream', 'MainController@createMydream');
+Route::get('/mypage/add-mydream', 'MainController@addMydream')->middleware('auth');
+Route::post('/mypage/add-mydream', 'MainController@createMydream')->middleware('auth');
 
-Route::get('/mypage/achivedlist', 'MainController@achivedList');
+Route::get('/mypage/achivedlist', 'MainController@achivedList')->middleware('auth');
 
 Route::get('/find-dreams', 'MainController@findDreams');
 
@@ -45,6 +45,10 @@ Route::get('/find-dreams/profile/achivedlist', 'MainController@findDreamsProfile
 
 Auth::routes();
 
+//count good
+Route::post('/dream_good', 'MainController@countGoods');
+
+//iranai
 Route::get('/home', 'HomeController@index')->name('home');
 
 // for social_login

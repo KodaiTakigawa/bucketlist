@@ -2,10 +2,10 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>BucketList-MyPage</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/find_dreams.css') }}">
     <link rel="stylesheet" href="{{ asset('css/find_dreams_profile.css') }}">
   </head>
   <body>
@@ -43,7 +43,7 @@
             <div class="float-right">
               <div class="good-button">
                 <p class="float-right">{{$dream->good}}</p>
-                <img src="{{ asset('img/fire.png') }}" style="width">
+                <img src="{{ asset('img/fire.png') }}" id='good'>
               </div>
             </div>
           </div>
@@ -53,4 +53,9 @@
     </div>
   </body>
   <script src="js/app.js"></script>
+  <script type="text/javascript">
+    document.addEventListener('DOMcontentLoaded', function() {
+      document.getElementById('good')
+    })
+  </script>
 </html>
