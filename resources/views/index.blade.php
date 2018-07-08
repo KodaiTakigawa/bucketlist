@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>BucketList</title>
+    <title>Dreamers</title>
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
   </head>
@@ -22,8 +22,8 @@
       </div>
     </div>
     <div class="container">
-      <h1>BucektListとは・・・</h1>
-      <p>死ぬまでにしたい100のことを書くリストです。<br></p>
+      <h1>Dreamersとは・・・</h1>
+      <p>夢や目標を持った人達が集まる場所です。<br></p>
       <p>同じ夢や目標を持った人に出会えます。</p>
       <p>あなたの夢や目標を登録して、仲間を見つけよう！</p>
     </div>

@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>BucketList-MyPage</title>
+    <title>Achieved List Dreamer -Dreamers-</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
     <link rel="stylesheet" href="{{ asset('css/find_dreams_profile.css') }}">

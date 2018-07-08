@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>BucketList-MyPage</title>
+    <title>MyPage -Dreamers-</title>
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
@@ -34,10 +34,11 @@
               @endif
             </div>
           </div>
-          <p>叶えた夢の数：{{$achivementNum}}</p>
+          <a href="/mypage/achivedlist"><p>叶えた夢の数：{{$achievementNum}}</p></a>
         </div>
       </div>
     </div>
+<!-- dream list  -->
     <div class="container">
       <h2 class="list-name">LIST</h2>
       <a href="/mypage/add-mydream" value="{{Auth::user()->id}}"><div id="add" class="float-right">
@@ -51,13 +52,17 @@
       <div class="row">
         <div class="card mx-auto">
           <div class="card-body">
-            <a href="/mypage/mydream?dream_id={{$mydream->id}}" class="text-dark float-left"><p>{{$mydream->title}}</p></a>
-            <div class="float-right">
+            <a href="/mypage/mydream?dream_id={{$mydream->id}}" class="text-dark float-left" id="dream_id_{{$mydream->id}}"><p>{{$mydream->title}}</p></a>
+            <div class="d-flex justify-content-end p-0">
               <div class="good-button">
-                <p class="float-right">{{$mydream->good}}</p>
                 <img src="img/fire.png" style="width">
               </div>
-               <a href="/mypage/achivedlist?id={{Auth::user()->id}}&dream_id={{$mydream->id}}" class="btn btn-success">Achievement</a>
+              <div class="">
+                <p class="">{{$mydream->good}}</p>
+              </div>
+            </div>
+            <div class="d-flex justify-content-end p-0">
+              <button data-value="{{$mydream->id}}" class="btn btn-success" id="achieve">Achievement</button>
             </div>
           </div>
         </div>
@@ -65,5 +70,28 @@
       @endforeach
     </div>
   </body>
-  <script src="js/app.js"></script>
+  <script src="{{ asset('js/app.js') }}"></script>
+  <script type="text/javascript">
+  $.ajaxSetup({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+  });
+
+  document.getElementById('achieve').addEventListener('click', function() {
+    var dream_id = this.getAttribute("data-value");
+    var dream_title = document.getElementById(`dream_id_${dream_id}`).textContent;
+    var data = {
+      'dream_id': dream_id,
+    };
+    $.ajax({
+      type: 'POST',
+      url: '/mypage/achivedlist',
+      data: data,
+    });
+    window.location.href = "/mypage/achivedlist";
+    window.open(`https://twitter.com/intent/tweet?text=【${dream_title}】を達成しました。\n&hashtags=Dreamers`, 'newwindow', 'width=400,height=300');
+  })
+
+  </script>
 </html>

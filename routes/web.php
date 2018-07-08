@@ -33,7 +33,8 @@ Route::post('/mypage/mydream/edit', 'MainController@updateMydream')->middleware(
 Route::get('/mypage/add-mydream', 'MainController@addMydream')->middleware('auth');
 Route::post('/mypage/add-mydream', 'MainController@createMydream')->middleware('auth');
 
-Route::get('/mypage/achivedlist', 'MainController@achivedList')->middleware('auth');
+Route::get('/mypage/achivedlist', 'MainController@achievedList')->middleware('auth');
+Route::post('/mypage/achivedlist', 'MainController@achieveDream')->middleware('auth');
 
 Route::get('/find-dreams', 'MainController@findDreams');
 
