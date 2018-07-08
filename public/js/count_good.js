@@ -4,22 +4,21 @@ $.ajaxSetup({
   }
 });
 
-function handler(event) {
-	    var item = Event.element(event);
-	    alert("クリックしたエレメントのid要素は"+item.id+"です");
-}
 
 $(function(){
     // Ajax button click
     $('#good_button').one('click',function(){
 //        var dream_id = $(event.target).id;
-        var dream_id = $(this, "#dream_id").text();
+        var dream_id;
+        dream_id = document.getElementById('dream_id').textContent;
         var data = {};
         data['dream_id'] = dream_id;
         $.ajax({
             url:'/dream_good',
             type:'POST',
             data:data,
+            processData: false,
+            contentType: false
         })
         // Ajaxリクエストが成功した時発動
         .done( (data) => {
