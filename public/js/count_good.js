@@ -4,35 +4,34 @@ $.ajaxSetup({
   }
 });
 
+var good_button = document.getElementsByClassName("good-button");
 
-$(function(){
-    // Ajax button click
-    $('#good_button').one('click',function(){
-//        var dream_id = $(event.target).id;
-        var dream_id;
-        dream_id = document.getElementById('dream_id').textContent;
-        var data = {};
-        data['dream_id'] = dream_id;
-        $.ajax({
-            url:'/dream_good',
-            type:'POST',
-            data:data,
-            processData: false,
-            contentType: false
-        })
-        // Ajaxリクエストが成功した時発動
-        .done( (data) => {
-            $('#good_num').html(data);
-            console.log(data);
-        })
-        // Ajaxリクエストが失敗した時発動
-        .fail( (data) => {
-            $('#good_num').html(data);
-            console.log(data);
-        })
-        // Ajaxリクエストが成功・失敗どちらでも発動
-        .always( (data) => {
+var countGood = function(){
+  var dream_id = this.getAttribute("data-value");
+  var data = {
+    'dream_id': dream_id,
+  };
+  $.ajax({
+      url:'/dream_good',
+      type:'POST',
+      data:data,
+  })
+  // Ajaxリクエストが成功した時発動
+  .done( (data) => {
+      $(`#dream_id_${dream_id}`).html(data);
+      console.log(data);
+  })
+  // Ajaxリクエストが失敗した時発動
+  .fail( (data) => {
+      $(`#dream_id_${dream_id}`).html(data);
+      console.log(data);
+  })
+  // Ajaxリクエストが成功・失敗どちらでも発動
+  .always( (data) => {
 
-        });
-    });
+  });
+};
+
+Array.from(good_button).forEach(function(div) {
+  div.addEventListener('click', countGood, {once: true});
 });

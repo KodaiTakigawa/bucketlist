@@ -52,17 +52,23 @@
       <div class="row">
         <div class="card mx-auto">
           <div class="card-body">
-            <a href="/mypage/mydream?dream_id={{$mydream->id}}" class="text-dark float-left" id="dream_id_{{$mydream->id}}"><p>{{$mydream->title}}</p></a>
-            <div class="d-flex justify-content-end p-0">
-              <div class="good-button">
-                <img src="img/fire.png" style="width">
+            <div class="d-flex flex-column flex-sm-row pb-0">
+              <div class="mr-auto">
+                <a href="/mypage/mydream?dream_id={{$mydream->id}}" class="text-dark" id="dream_id_{{$mydream->id}}"><p>{{$mydream->title}}</p></a>
               </div>
-              <div class="">
-                <p class="">{{$mydream->good}}</p>
+              <div class="d-flex justify-content-end flex-sm-column p-0">
+                <div class="d-flex justify-content-end p-0">
+                  <div class="good-button">
+                    <img src="img/fire.png" style="width">
+                  </div>
+                  <div class="">
+                    <p class="">{{$mydream->good}}</p>
+                  </div>
+                </div>
+                <div class="">
+                  <button data-value="{{$mydream->id}}" class="btn btn-success" id="achieve">Achievement</button>
+                </div>
               </div>
-            </div>
-            <div class="d-flex justify-content-end p-0">
-              <button data-value="{{$mydream->id}}" class="btn btn-success" id="achieve">Achievement</button>
             </div>
           </div>
         </div>

@@ -18,8 +18,8 @@
         <div class="col-5">
           <img src="{{$user->icon_url}}" alt="Avatar" class="avatar">
           <div class="social-icons">
-            <a href="#"><img src="{{ asset('img/f-ogo_RGB_HEX-58.png') }}" alt="facebook" class="social-icon-facebook"></a>
-            <a href="https://twitter.com/intent/user?user_id={{$twitter_id}}"><img src="{{ asset('img/Twitter_Logo_Blue.png') }}" alt="twitter" class="social-icon-twitter"></a>
+            <!-- <a href="#"><img src="{{ asset('img/f-ogo_RGB_HEX-58.png') }}" alt="facebook" class="social-icon-facebook"></a> -->
+            <a class="btn pt-0" id="twitter"><img src="{{ asset('img/Twitter_Logo_Blue.png') }}" alt="twitter" class="social-icon-twitter"></a>
           </div>
         </div>
         <div class="col-7">
@@ -52,10 +52,10 @@
       @endforeach
     </div>
   </body>
-  <script src="js/app.js"></script>
+  <script src="{{ asset('js/app.js') }}"></script>
   <script type="text/javascript">
-    document.addEventListener('DOMcontentLoaded', function() {
-      document.getElementById('good')
+    document.getElementById('twitter').addEventListener('click', function(){
+      window.open(`https://twitter.com/intent/user?user_id={{$twitter_id}}`, 'newwindow')
     })
   </script>
 </html>

@@ -50,63 +50,7 @@
         </div>
       </div>
       @endforeach
-      <div class="row">
-        <div class="card mx-auto">
-          <div class="card-body pb-0">
-            <p >I want to visit all over the world.</p>
-            <div class="float-right">
-              <div class="good-button">
-                <p class="float-right">777</p>
-                <img src="{{ asset('img/fire.png') }}" style="width">
-              </div>
-            </div>
-          </div>
-          <p class="text-right mb-0" style="font-size: .5rem;">2018/06/03に達成しました。</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="card mx-auto">
-          <div class="card-body pb-0">
-            <p >I want to visit all over the world.</p>
-            <div class="float-right">
-              <div class="good-button">
-                <p class="float-right">777</p>
-                <img src="{{ asset('img/fire.png') }}" style="width">
-              </div>
-            </div>
-          </div>
-          <p class="text-right mb-0" style="font-size: .5rem;">2018/06/03に達成しました。</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="card mx-auto">
-          <div class="card-body pb-0">
-            <p >I want to visit all over the world.</p>
-            <div class="float-right">
-              <div class="good-button">
-                <p class="float-right">777</p>
-                <img src="{{ asset('img/fire.png') }}" style="width">
-              </div>
-            </div>
-          </div>
-          <p class="text-right mb-0" style="font-size: .5rem;">2018/06/03に達成しました。</p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="card mx-auto">
-          <div class="card-body pb-0">
-            <p >I want to visit all over the world.</p>
-            <div class="float-right">
-              <div class="good-button">
-                <p class="float-right">777</p>
-                <img src="{{ asset('img/fire.png') }}" style="width">
-              </div>
-            </div>
-          </div>
-          <p class="text-right mb-0" style="font-size: .5rem;">2018/06/03に達成しました。</p>
-        </div>
-      </div>
     </div>
   </body>
-  <script src="js/app.js"></script>
+  <script src="{{ asset('js/app.js') }}"></script>
 </html>

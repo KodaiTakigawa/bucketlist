@@ -53,6 +53,9 @@ class MainController extends Controller
       $dream = new Dream;
       $form = $request->all();
       unset($form['_token']);
+      if ($request->detail == NULL) {
+        $form['detail'] = " ";
+      }
       $dream->good = 0;
       $dream->achievement = 'f';
       $dream->fill($form)->save();
@@ -107,7 +110,7 @@ class MainController extends Controller
 
     function findDreams(Request $request){
       $search = $request->search;
-      $dreams = Dream::where('title', 'like', '%' . $search . '%')->with('user')->get();
+      $dreams = Dream::where('title', 'ilike', '%' . $search . '%')->with('user')->get();
       return view('find_dreams', ['dreams' => $dreams]);
     }
 
@@ -119,7 +122,7 @@ class MainController extends Controller
     function findDreamsProfile(Request $request){
       $user_id = $request->id;
       $user = User::where('id', $user_id)->first();
-      $dreams = Dream::where('user_id', $user_id)->get();
+      $dreams = Dream::where('user_id', $user_id)->where('achievement', 'f')->get();
       $achievementNum = Dream::where('user_id', $user_id)->where('achievement', 't')->count();
       $twitter_id = LinkedSocialAccount::where('user_id', $user_id)->first()->provider_id;
       return view('find_dreams_profile', ['dreams' => $dreams, 'achievementNum' => $achievementNum, 'user' => $user, 'twitter_id' => $twitter_id]);
@@ -135,16 +138,16 @@ class MainController extends Controller
 
     function countGoods(Request $request){
       if ($request->ajax()) {
-          // Ajaxである
-          $dream_id = $request->dream_id;
-          $dream = Dream::find($dream_id);
-          $good_num = $dream->good + 1;
-          $form =['good' => $good_num];
-          $dream->fill($form)->save();
-          return $good_num;
+        // Ajaxである
+        $dream_id = $request->dream_id;
+        $dream = Dream::find($dream_id);
+        $good_num = $dream->good + 1;
+        $form =['good' => $good_num];
+        $dream->fill($form)->save();
+        return $good_num;
       } else {
-          // Ajaxではない
-          return view('index');
+        // Ajaxではない
+        return view('index');
       }
     }
 

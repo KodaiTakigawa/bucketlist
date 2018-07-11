@@ -16,14 +16,19 @@
       <div class="pb-3" style="border-bottom: solid #707070;">
         <div class="d-flex">
           <div class=" align-self-center p-2">
+            @if($dream->achievement == 't')
+            <p class="mb-0">#ACHIEVED</p>
+            @endif
             <h1>{{$dream->title}}</h1>
           </div>
-          <div class="mr-auto align-self-center p-2">
-            <div class="d-flex">
-              <div class="good-button btn" id="good_button">
-                <img src="{{ asset('img/fire.png') }}">
+          <div class="mr-auto align-self-center">
+            <div class="d-flex justify-content-end align-items-center pb-0">
+              <div class="good-button mb-0" id="good_button_{{$dream->id}}" data-value="{{$dream->id}}">
+                <img class="img-fluid" src="{{ asset('img/fire.png') }}" style="width">
               </div>
-              <p class="align-self-center pt-3" id="good_num">{{$dream->good}}</p>
+              <div class="pt-3">
+                <p id="dream_id_{{$dream->id}}">{{$dream->good}}</p>
+              </div>
             </div>
           </div>
           <div class="p-2">
@@ -40,7 +45,8 @@
     </div>
   </body>
   <script src="{{ asset('js/app.js') }}"></script>
-  <script type="text/javascript">
+  <script src="{{ asset('js/count_good.js') }}"></script>
+  <!-- <script type="text/javascript">
   $.ajaxSetup({
     headers: {
       'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -73,5 +79,5 @@
           });
       });
   });
-  </script>
+  </script> -->
 </html>
