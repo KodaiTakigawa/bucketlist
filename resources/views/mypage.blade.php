@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>MyPage -Dreamers-</title>
-    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
   </head>
@@ -64,8 +64,8 @@
                     <p class="">{{$mydream->good}}</p>
                   </div>
                 </div>
-                <div class="">
-                  <button data-value="{{$mydream->id}}" class="btn btn-success" id="achieve">達成</button>
+                <div>
+                  <button data-value="{{$mydream->id}}" class="btn btn-success achieve" id="achieve">達成</button>
                 </div>
               </div>
             </div>
@@ -76,27 +76,5 @@
     </div>
   </body>
   <script src="{{ asset('js/app.js') }}"></script>
-  <script type="text/javascript">
-  $.ajaxSetup({
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    }
-  });
-
-  document.getElementById('achieve').addEventListener('click', function() {
-    var dream_id = this.getAttribute("data-value");
-    var dream_title = document.getElementById(`dream_id_${dream_id}`).textContent;
-    var data = {
-      'dream_id': dream_id,
-    };
-    $.ajax({
-      type: 'POST',
-      url: '/mypage/achivedlist',
-      data: data,
-    });
-    window.location.href = "/mypage/achivedlist";
-    window.open(`https://twitter.com/intent/tweet?text=【${dream_title}】を達成しました。\n&hashtags=Dreamers`, 'newwindow', 'width=400,height=300');
-  })
-
-  </script>
+  <script src="{{ asset('js/achieve_dream.js') }}"></script>
 </html>
