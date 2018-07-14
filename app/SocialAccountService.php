@@ -23,6 +23,7 @@ class SocialAccountService
                 'email' => $providerUser->getEmail(),
                 'name'  => $providerUser->getName(),
                 'icon_url' => $providerUser->getAvatar(),
+                'description' => ' ',
             ]);
         }
 

@@ -15,11 +15,11 @@
 <!-- profile -->
     <div class="container">
       <div class="row">
-        <div class="col-sm-5 pull-right">
+        <div class="col-5">
           <img src="{{Auth::user()->icon_url}}" alt="Avatar" class="avatar">
         </div>
-        <div class="col-sm-7">
-          <div class="d-inline-flex pb-0">
+        <div class="col-7">
+          <div class="d-flex flex-column-reverse flex-sm-row pb-0">
             <div class="mr-auto p-2">
               <h1>{{Auth::user()->name}}</h1>
             </div>
@@ -28,16 +28,15 @@
             </div>
           </div>
           <div class="d-flex pb-0">
-            <div class="w-50 p-2">
-              @if(isset(Auth::user()->description))
-              <p>{{Auth::user()->description}}</p>
-              @endif
-            </div>
+            @if(isset(Auth::user()->description))
+            <p>{{Auth::user()->description}}</p>
+            @endif
           </div>
           <a href="/mypage/achivedlist"><p>叶えた夢の数：{{$achievementNum}}</p></a>
         </div>
       </div>
     </div>
+    
 <!-- dream list  -->
     <div class="container">
       <h2 class="list-name">LIST</h2>
@@ -66,7 +65,7 @@
                   </div>
                 </div>
                 <div class="">
-                  <button data-value="{{$mydream->id}}" class="btn btn-success" id="achieve">Achievement</button>
+                  <button data-value="{{$mydream->id}}" class="btn btn-success" id="achieve">達成</button>
                 </div>
               </div>
             </div>

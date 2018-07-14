@@ -15,10 +15,10 @@
 <!-- profile -->
     <div class="container">
       <div class="row">
-        <div class="col-sm-5 pull-right">
+        <div class="col-5">
           <img src="{{Auth::user()->icon_url}}" alt="Avatar" class="avatar">
         </div>
-        <div class="col-sm-7">
+        <div class="col-7">
           <form method="post" action="/mypage/edit">
             {{ csrf_field() }}
             <div class="d-inline-flex pb-0">

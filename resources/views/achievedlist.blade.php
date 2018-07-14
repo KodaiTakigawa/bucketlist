@@ -12,31 +12,29 @@
     @include('layouts.navbar')
 
 <!-- profile -->
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-5 pull-right">
-        <img src="{{Auth::user()->icon_url}}" alt="Avatar" class="avatar">
-      </div>
-      <div class="col-sm-7">
-        <div class="d-inline-flex pb-0">
-          <div class="mr-auto p-2">
-            <h1>{{Auth::user()->name}}</h1>
-          </div>
-          <div class="p-2">
-            <a class="btn btn-outline-secondary" href="/mypage/edit">Edit Profile</a>
-          </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-5">
+          <img src="{{Auth::user()->icon_url}}" alt="Avatar" class="avatar">
         </div>
-        <div class="d-flex pb-0">
-          <div class="w-50 p-2">
+        <div class="col-7">
+          <div class="d-flex flex-column-reverse flex-sm-row pb-0">
+            <div class="mr-auto p-2">
+              <h1>{{Auth::user()->name}}</h1>
+            </div>
+            <div class="p-2">
+              <a class="btn btn-outline-secondary" href="/mypage/edit">Edit Profile</a>
+            </div>
+          </div>
+          <div class="d-flex pb-0">
             @if(isset(Auth::user()->description))
             <p>{{Auth::user()->description}}</p>
             @endif
           </div>
+          <a href="/mypage/achivedlist"><p>叶えた夢の数：{{$achievementNum}}</p></a>
         </div>
-        <a href="/mypage/achivedlist"><p>叶えた夢の数：{{$achievementNum}}</p></a>
       </div>
     </div>
-  </div>
 
 <!-- achievedDreams -->
     <div class="container p-0">

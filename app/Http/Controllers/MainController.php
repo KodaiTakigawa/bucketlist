@@ -36,7 +36,11 @@ class MainController extends Controller
       $user = User::find($user_id);
       $form = $request->all();
       unset($form['_token']);
-      $user->fill($form)->save();
+      $user->fill($form);
+      if(is_null($user->description)){
+        $user->description = ' ';
+      }
+      $user->save();
       return redirect('/mypage');
     }
 
