@@ -26,8 +26,8 @@ class MainController extends Controller
     function editMypage(){
       $user_id = Auth::user()->id;
       $mydreams = Dream::where('user_id', $user_id)->where('achievement', 'f')->get();
-      $achivementNum = Dream::where('user_id', $user_id)->where('achievement', 't')->count();
-      return view('mypage_edit', ['mydreams' => $mydreams, 'achivementNum' => $achivementNum]);
+      $achievementNum = Dream::where('user_id', $user_id)->where('achievement', 't')->count();
+      return view('mypage_edit', ['mydreams' => $mydreams, 'achievementNum' => $achievementNum]);
     }
 
     function updateMypage(Request $request){
@@ -149,6 +149,25 @@ class MainController extends Controller
         $form =['good' => $good_num];
         $dream->fill($form)->save();
         return $good_num;
+      } else {
+        // Ajaxではない
+        return view('index');
+      }
+    }
+
+    function updateProfile(Request $request){
+      if ($request->ajax()) {
+        // Ajaxである
+        $name = $request->name;
+        $description = $request->description;
+        $user_id = Auth::user()->id;
+        $user = User::find($user_id);
+        $form =[
+          'name' => $name,
+          'description' => $description,
+        ];
+        $user->fill($form)->save();
+        return $form;
       } else {
         // Ajaxではない
         return view('index');

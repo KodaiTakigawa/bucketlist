@@ -46,8 +46,11 @@ Route::get('/find-dreams/profile/achivedlist', 'MainController@findDreamsProfile
 
 Auth::routes();
 
-//count good
+// count good
 Route::post('/dream_good', 'MainController@countGoods');
+
+// update profile
+Route::post('/update_profile', 'MainController@updateProfile');
 
 //iranai
 Route::get('/home', 'HomeController@index')->name('home');

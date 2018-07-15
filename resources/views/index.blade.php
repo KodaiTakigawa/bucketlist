@@ -29,5 +29,5 @@
       <p>夢や目標を登録して、仲間を見つけよう！</p>
     </div>
   </body>
-  <script src="js/app.js"></script>
+  <script src="{ asset{('js/app.js') }}"></script>
 </html>

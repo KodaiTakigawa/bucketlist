@@ -13,7 +13,7 @@
     @include('layouts.navbar')
 
 <!-- profile -->
-    <div class="container">
+    <div class="container pb-0">
       <div class="row">
         <div class="col-5">
           <img src="{{Auth::user()->icon_url}}" alt="Avatar" class="avatar">
@@ -41,7 +41,7 @@
               @endif
             </div>
           </form>
-          叶えた夢の数：{{$achivementNum}}
+          <a href="/mypage/achivedlist"><p>叶えた夢の数：{{$achievementNum}}</p></a>
         </div>
       </div>
     </div>
