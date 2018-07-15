@@ -22,9 +22,6 @@ Route::get('/', 'MainController@index');
 Route::get('/mypage', 'MainController@mypage')->middleware('auth');
 Route::post('/mypage', 'MainController@mypage')->middleware('auth');
 
-Route::get('/mypage/edit', 'MainController@editMypage')->middleware('auth');
-Route::post('/mypage/edit', 'MainController@updateMypage')->middleware('auth');
-
 Route::get('/mypage/mydream', 'MainController@mydream')->middleware('auth');
 
 Route::get('/mypage/mydream/edit', 'MainController@editMydream')->middleware('auth');

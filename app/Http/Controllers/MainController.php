@@ -23,27 +23,6 @@ class MainController extends Controller
       return view('mypage', ['mydreams' => $mydreams, 'achievementNum' => $achievementNum]);
     }
 
-    function editMypage(){
-      $user_id = Auth::user()->id;
-      $mydreams = Dream::where('user_id', $user_id)->where('achievement', 'f')->get();
-      $achievementNum = Dream::where('user_id', $user_id)->where('achievement', 't')->count();
-      return view('mypage_edit', ['mydreams' => $mydreams, 'achievementNum' => $achievementNum]);
-    }
-
-    function updateMypage(Request $request){
-      // for update
-      $user_id = Auth::user()->id;
-      $user = User::find($user_id);
-      $form = $request->all();
-      unset($form['_token']);
-      $user->fill($form);
-      if(is_null($user->description)){
-        $user->description = ' ';
-      }
-      $user->save();
-      return redirect('/mypage');
-    }
-
     function mydream(Request $request){
       $dream = Dream::find($request->dream_id);
       return view('mydream',['dream' => $dream]);
