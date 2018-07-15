@@ -9,14 +9,18 @@
   </head>
   <body>
     @include('layouts.navbar')
-    <div class="d-flex justify-content-center">
-      <form class="form-inline" action="/find-dreams" method="get">
-        {{ csrf_field() }}
-        <div>
-          <input class="form-control" type="search" name="search" placeholder="Dream" aria-label="Search">
+    <div class="container pb-0">
+      <div class="row  justify-content-center">
+        <div class="d-flex">
+          <form class="form-inline form-search" action="/find-dreams" method="get" width="100%">
+            {{ csrf_field() }}
+            <div>
+              <input class="form-control input-search" type="search" name="search" placeholder="Dream" aria-label="Search" width="100%">
+            </div>
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
         </div>
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      </div>
     </div>
     <div class="container">
       <div class="mx-auto">
@@ -29,5 +33,5 @@
       <p>夢や目標を登録して、仲間を見つけよう！</p>
     </div>
   </body>
-  <script src="{ asset{('js/app.js') }}"></script>
+  <script src="{{ asset('js/app.js') }}"></script>
 </html>

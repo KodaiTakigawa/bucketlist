@@ -47,7 +47,7 @@ Auth::routes();
 Route::post('/dream_good', 'MainController@countGoods');
 
 // update profile
-Route::post('/update_profile', 'MainController@updateProfile');
+Route::post('/update_profile', 'MainController@updateProfile')->middleware('auth');
 
 //iranai
 Route::get('/home', 'HomeController@index')->name('home');
