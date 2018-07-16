@@ -12,9 +12,9 @@
     @include('layouts.navbar')
 
     <!-- dream -->
-    <div class="container">
+    <div class="container pt-0">
       <div class="pb-3" style="border-bottom: solid #707070;">
-        <div class="d-flex flex-column-reverse flex-sm-row">
+        <div class="d-flex justify-content-between flex-column-reverse flex-sm-row">
           <div class="d-inline-flex">
             <div class=" align-self-center p-2">
               @if($dream->achievement == 't')
@@ -33,7 +33,7 @@
               </div>
             </div>
           </div>
-          <div class="ml-auto p-2">
+          <div class="p-sm-2">
             <a href="/find-dreams/profile?id={{$dream->user->id}}"><img src="{{$dream->user->icon_url}}" alt="Avatar" class="avatar mr-3"></a>
           </div>
         </div>
