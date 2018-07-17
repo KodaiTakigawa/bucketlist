@@ -21,7 +21,7 @@
             <div>
               <img src="{{Auth::user()->icon_url}}" alt="Avatar" class="avatar">
             </div>
-            <div class="no_edit" style="display: block;">
+            <div class="no_edit pl-3" style="display: block;">
               <h1 id="name">{{Auth::user()->name}}</h1>
               @if(isset(Auth::user()->description))
               <p id="description">{{Auth::user()->description}}</p>
