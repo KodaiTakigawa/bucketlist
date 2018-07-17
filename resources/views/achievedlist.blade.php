@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>BucketList-MyPage</title>
+    <title>Achieved list</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
   </head>
@@ -12,55 +12,54 @@
     @include('layouts.navbar')
 
 <!-- profile -->
-    <div class="container pb-0">
+    <div class="container">
       <div class="row">
-        <div class="col-5">
-          <img src="{{Auth::user()->icon_url}}" alt="Avatar" class="avatar">
-        </div>
-        <div class="col-7">
-          <div class="d-flex flex-column-reverse flex-sm-row pb-0 no_edit" style="display: block;">
-            <div class="mr-auto p-2">
-              <h1>{{Auth::user()->name}}</h1>
+        <div class="col">
+          <div class="d-flex pl-5 pt-5">
+            <div>
+              <img src="{{Auth::user()->icon_url}}" alt="Avatar" class="avatar">
             </div>
-            <div class="p-2 ml-auto">
+            <div class="no_edit pl-3" style="display: block;">
+              <h4 id="name">{{Auth::user()->name}}</h4>
+              @if(isset(Auth::user()->description))
+              <p id="description">{{Auth::user()->description}}</p>
+              @endif
+              <a href="/mypage/achivedlist"><p>叶えた夢の数：{{$achievementNum}}</p></a>
+            </div>
+            <div class="ml-auto no_edit">
               <a class="btn btn-outline-secondary" id="edit">Edit Profile</a>
             </div>
-          </div>
-          <div class="d-flex pb-0 no_edit" style="display: block;">
-            @if(isset(Auth::user()->description))
-            <p>{{Auth::user()->description}}</p>
-            @endif
-          </div>
-          <form method="post" action="/mypage/edit" style="display: none;" id="edit_form">
-            {{ csrf_field() }}
-            <div class="d-flex pb-0">
-              <div class="mr-auto p-2">
-                <div class="form-group">
-                  <label>Name</label>
-                    <input class="form-control" name="name" value="{{Auth::user()->name}}">
+            <!-- for edit profile -->
+            <form action="/update_profile" method="post" style="display: none;" id="edit_form">
+              {{ csrf_field() }}
+              <div class="d-flex pb-0">
+                <div class="mr-auto p-2">
+                  <div class="form-group">
+                    <label>Name</label>
+                      <input class="form-control" name="name" value="{{Auth::user()->name}}" id="name_update">
+                  </div>
+                </div>
+                <div class="p-2 ml-auto">
+                  <button class="btn btn-outline-secondary" type="submit" id="update">Save</button>
                 </div>
               </div>
-              <div class="p-2 ml-auto">
-                <button class="btn btn-outline-secondary" type="submit" id="update">Save</button>
+              <div class="form-group">
+                <label>Bio</label>
+                @if(isset(Auth::user()->description))
+                <textarea class="form-control" name="description" rows="3" cols="80" id="description_update">{{Auth::user()->description}}</textarea>
+                @else
+                <textarea class="form-control" name="description" rows="3" cols="80" id="description_update"></textarea>
+                @endif
               </div>
-            </div>
-            <div class="form-group">
-              <label>Bio</label>
-              @if(isset(Auth::user()->description))
-              <textarea class="form-control" name="description" rows="3" cols="80">{{Auth::user()->description}}</textarea>
-              @else
-              <textarea class="form-control" name="description" rows="3" cols="80"></textarea>
-              @endif
-            </div>
-          </form>
-          <a href="/mypage/achivedlist"><p>叶えた夢の数：{{$achievementNum}}</p></a>
+            </form>
+          </div>
         </div>
       </div>
     </div>
 
 <!-- achievedDreams -->
     <div class="container p-0">
-      <h2 class="list-name">ACHIEVD LIST</h2>
+      <h2 class="list-name">ACHIEVED LIST</h2>
     </div>
     <div class="container">
       @foreach($achievedDreams as $achievedDream)

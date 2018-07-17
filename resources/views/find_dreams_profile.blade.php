@@ -23,8 +23,8 @@
                 <a class="btn pt-0" id="twitter"><img src="{{ asset('img/Twitter_Logo_Blue.png') }}" alt="twitter" class="social-icon-twitter"></a>
               </div>
             </div>
-            <div>
-              <h1>{{$user->name}}</h1>
+            <div class="pl-3">
+              <h4>{{$user->name}}</h4>
               @if(isset($user->description))
               <p>{{$user->description}}</p>
               @endif
@@ -34,6 +34,8 @@
         </div>
       </div>
     </div>
+
+    <!-- dream list -->
     <div class="container">
       <h2 class="list-name">LIST</h2>
     </div>

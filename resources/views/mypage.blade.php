@@ -22,10 +22,11 @@
               <img src="{{Auth::user()->icon_url}}" alt="Avatar" class="avatar">
             </div>
             <div class="no_edit pl-3" style="display: block;">
-              <h1 id="name">{{Auth::user()->name}}</h1>
+              <h4 id="name">{{Auth::user()->name}}</h4>
               @if(isset(Auth::user()->description))
               <p id="description">{{Auth::user()->description}}</p>
               @endif
+              <a href="/mypage/achivedlist"><p>叶えた夢の数：{{$achievementNum}}</p></a>
             </div>
             <div class="ml-auto no_edit">
               <a class="btn btn-outline-secondary" id="edit">Edit Profile</a>
@@ -54,9 +55,6 @@
               </div>
             </form>
           </div>
-          <div class="pl-5">
-            <a href="/mypage/achivedlist"><p>叶えた夢の数：{{$achievementNum}}</p></a>
-          </div>
         </div>
       </div>
     </div>
@@ -81,17 +79,17 @@
       <div class="row">
         <div class="card mx-auto">
           <div class="card-body">
-            <div class="d-flex flex-column flex-sm-row align-items-center pb-0">
+            <div class="d-flex flex-column flex-sm-row pb-0">
               <div class="mr-auto">
                 <a href="/mypage/mydream?dream_id={{$mydream->id}}" class="text-dark" id="dream_id_{{$mydream->id}}"><p>{{$mydream->title}}</p></a>
               </div>
               <div class="d-flex justify-content-end flex-sm-column p-0">
-                <div class="d-flex justify-content-end p-0">
+                <div class="d-flex justify-content-end pr-3">
                   <div class="good-button">
-                    <img src="img/fire.png" style="width">
+                    <img src="img/fire.png">
                   </div>
-                  <div class="">
-                    <p class="">{{$mydream->good}}</p>
+                  <div>
+                    <p>{{$mydream->good}}</p>
                   </div>
                 </div>
                 <div>
@@ -107,46 +105,5 @@
   </body>
   <script src="{{ asset('js/app.js') }}"></script>
   <script src="{{ asset('js/achieve_dream.js') }}"></script>
-  <script>
-    $.ajaxSetup({
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    $(function() {
-      $('#edit').click(function(){
-        $('.no_edit').hide();
-        $('#edit_form').show();
-      });
-    });
-
-    $(function() {
-      $('#upadte').click(function(){
-        $('#edit_form').hide();
-        $('.no_edit').show();
-        console.log(1);
-
-        // var name = doucment.getElementById('name').value;
-        // console.log(name);
-        // var description = document.getElementById('description').value;
-        var name = document.forms.edit_form.name_update.value;
-        var description = document.forms.edit_form.description_update.value;
-        console.log(2);
-        var data = {
-          'name': name,
-          'desription': description,
-        };
-        console.log(3);
-        $.ajax({
-          url: '/update_profile',
-          type: 'POST',
-          data: data,
-        })
-        $(`name`).html(name);
-        $(`description`).html(description);
-        console.log(data);
-      });
-    });
-  </script>
+  <script src="{{ asset('js/update_profile.js') }}"></script>
 </html>
