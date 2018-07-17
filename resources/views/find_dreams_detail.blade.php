@@ -15,11 +15,13 @@
     <div class="container pt-0">
       <div class="pb-3" style="border-bottom: solid #707070;">
         <div class="d-flex justify-content-between flex-column-reverse flex-sm-row">
+          @if($dream->achievement == 't')
+          <div>
+            <p>#ACHIEVED</p>
+          </div>
+          @endif
           <div class="d-inline-flex">
             <div class=" align-self-center p-2">
-              @if($dream->achievement == 't')
-              <p class="mb-0">#ACHIEVED</p>
-              @endif
               <h1>{{$dream->title}}</h1>
             </div>
             <div class="align-self-center">

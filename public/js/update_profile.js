@@ -4,30 +4,31 @@ $.ajaxSetup({
     }
 });
 
-  $(function() {
-    $('#edit').click(function(){
-      $('.no_edit').hide().toggleClass("d-flex");
-      $('#edit_form').show();
-    });
+$(function() {
+  $('#edit').click(function(){
+    $('.no_edit').hide();
+    $('#edit_form').show();
   });
+});
 
-  $(function() {
-    $('#upadte').click(function(){
-      $('#edit_form').hide();
-      $('.no_edit').show().toggleClass("d-flex");
+$(function() {
+  $('#upadte').click(function(){
+    $('#edit_form').hide();
+    $('.no_edit').show();
 
-      var name = getElementById('name').textContent;
-      var description = getElementById('description').texitContent;
-      var data = {
-        'name': name,
-        'desription': description,
-      };
-      $.ajax({
-        url:'/update_profile',
-        type:'POST',
-        data:data,
-      })
-      $(`form`).html(data);
-      console.log(data);
-    });
+    var name = doucment.getElementById('name').value;
+    console.log(name);
+    var description = document.getElementById('description').value;
+    var data = {
+      'name': name,
+      'desription': description,
+    };
+    $.ajax({
+      url: '/update_profile',
+      type: 'POST',
+      data: data,
+    })
+    $(`form`).html(data);
+    console.log(data);
   });
+});

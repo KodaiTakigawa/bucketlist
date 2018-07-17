@@ -18,10 +18,6 @@
     border-radius: 50%;
 }
 
-.container {
-  padding: 1.7rem;
-}
-
 /* list-title */
 
 .list-name {
@@ -30,7 +26,7 @@
   text-align: center;
 }
 
-#add {
+/* #add {
   position: relative;
   right: .5rem;
   bottom: 2.7rem;
@@ -40,16 +36,16 @@
   color: #000;
   border: solid thin #000;
   text-align: center;
-}
-
+} */
+/* 
 #add p {
   position: relative;
-  margin: 0px;  /*これを追加*/
+  margin: 0px;
   top:50%;
   transform: translateY(-50%);
   font-size: 4rem;
 }
-
+ */
 
 /* dream list card */
 

@@ -7,64 +7,72 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
   </head>
   <body>
 <!-- navbar -->
     @include('layouts.navbar')
 
 <!-- profile -->
-    <div class="container pb-0">
+    <div class="container">
       <div class="row">
-        <div class="col-5">
-          <img src="{{Auth::user()->icon_url}}" alt="Avatar" class="avatar">
-        </div>
-        <div class="col-7">
-          <div class="d-flex flex-column-reverse flex-sm-row pb-0 no_edit" style="display: block;">
-            <div class="mr-auto p-2">
-              <h1>{{Auth::user()->name}}</h1>
+        <div class="col">
+          <div class="d-flex pl-5 pt-5">
+            <div>
+              <img src="{{Auth::user()->icon_url}}" alt="Avatar" class="avatar">
             </div>
-            <div class="p-2 ml-auto">
-              <a class="btn btn-outline-secondary" id="edit">Edit Profile</a>
-            </div>
-          </div>
-          <div class="d-flex pb-0 no_edit" style="display: block;">
-            @if(isset(Auth::user()->description))
-            <p>{{Auth::user()->description}}</p>
-            @endif
-          </div>
-          <form method="post" action="/mypage/edit" style="display: none;" id="edit_form">
-            {{ csrf_field() }}
-            <div class="d-flex pb-0">
-              <div class="mr-auto p-2">
-                <div class="form-group">
-                  <label>Name</label>
-                    <input class="form-control" name="name" value="{{Auth::user()->name}}">
-                </div>
-              </div>
-              <div class="p-2 ml-auto">
-                <button class="btn btn-outline-secondary" type="submit" id="update">Save</button>
-              </div>
-            </div>
-            <div class="form-group">
-              <label>Bio</label>
+            <div class="no_edit" style="display: block;">
+              <h1 id="name">{{Auth::user()->name}}</h1>
               @if(isset(Auth::user()->description))
-              <textarea class="form-control" name="description" rows="3" cols="80">{{Auth::user()->description}}</textarea>
-              @else
-              <textarea class="form-control" name="description" rows="3" cols="80"></textarea>
+              <p id="description">{{Auth::user()->description}}</p>
               @endif
             </div>
-          </form>
-          <a href="/mypage/achivedlist"><p>叶えた夢の数：{{$achievementNum}}</p></a>
+            <div class="ml-auto no_edit">
+              <a class="btn btn-outline-secondary" id="edit">Edit Profile</a>
+            </div>
+            <!-- for edit profile -->
+            <form action="/update_profile" method="post" style="display: none;" id="edit_form">
+              {{ csrf_field() }}
+              <div class="d-flex pb-0">
+                <div class="mr-auto p-2">
+                  <div class="form-group">
+                    <label>Name</label>
+                      <input class="form-control" name="name" value="{{Auth::user()->name}}" id="name_update">
+                  </div>
+                </div>
+                <div class="p-2 ml-auto">
+                  <button class="btn btn-outline-secondary" type="submit" id="update">Save</button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Bio</label>
+                @if(isset(Auth::user()->description))
+                <textarea class="form-control" name="description" rows="3" cols="80" id="description_update">{{Auth::user()->description}}</textarea>
+                @else
+                <textarea class="form-control" name="description" rows="3" cols="80" id="description_update"></textarea>
+                @endif
+              </div>
+            </form>
+          </div>
+          <div class="pl-5">
+            <a href="/mypage/achivedlist"><p>叶えた夢の数：{{$achievementNum}}</p></a>
+          </div>
         </div>
       </div>
     </div>
     
 <!-- dream list  -->
-    <div class="container">
-      <h2 class="list-name">LIST</h2>
-      <a href="/mypage/add-mydream" value="{{Auth::user()->id}}"><div id="add" class="float-right">
-        <p>+</p>
-      </div></a>
+    <div class="container d-flex justify-content-between align-items-center list-name">
+      <div>
+      </div>
+      <div>
+        <h2 class="mb-0">LIST</h2>
+      </div>
+      <div>
+        <a href="/mypage/add-mydream" value="{{Auth::user()->id}}" id="add">
+          <i class="fas fa-plus"></i>
+        </a>
+      </div>
     </div>
 
 <!-- dreams -->
@@ -73,7 +81,7 @@
       <div class="row">
         <div class="card mx-auto">
           <div class="card-body">
-            <div class="d-flex flex-column flex-sm-row pb-0">
+            <div class="d-flex flex-column flex-sm-row align-items-center pb-0">
               <div class="mr-auto">
                 <a href="/mypage/mydream?dream_id={{$mydream->id}}" class="text-dark" id="dream_id_{{$mydream->id}}"><p>{{$mydream->title}}</p></a>
               </div>
@@ -99,5 +107,46 @@
   </body>
   <script src="{{ asset('js/app.js') }}"></script>
   <script src="{{ asset('js/achieve_dream.js') }}"></script>
-  <script src="{{ asset('js/update_profile.js') }}"></script>
+  <script>
+    $.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    $(function() {
+      $('#edit').click(function(){
+        $('.no_edit').hide();
+        $('#edit_form').show();
+      });
+    });
+
+    $(function() {
+      $('#upadte').click(function(){
+        $('#edit_form').hide();
+        $('.no_edit').show();
+        console.log(1);
+
+        // var name = doucment.getElementById('name').value;
+        // console.log(name);
+        // var description = document.getElementById('description').value;
+        var name = document.forms.edit_form.name_update.value;
+        var description = document.forms.edit_form.description_update.value;
+        console.log(2);
+        var data = {
+          'name': name,
+          'desription': description,
+        };
+        console.log(3);
+        $.ajax({
+          url: '/update_profile',
+          type: 'POST',
+          data: data,
+        })
+        $(`name`).html(name);
+        $(`description`).html(description);
+        console.log(data);
+      });
+    });
+  </script>
 </html>

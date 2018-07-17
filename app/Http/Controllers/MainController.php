@@ -8,6 +8,7 @@ use App\Dream;
 use App\User;
 use App\LinkedSocialAccount;
 use Auth;
+use Response;
 
 class MainController extends Controller
 {
@@ -135,8 +136,6 @@ class MainController extends Controller
     }
 
     function updateProfile(Request $request){
-      if ($request->ajax()) {
-        // Ajaxである
         $name = $request->name;
         $description = $request->description;
         $user_id = Auth::user()->id;
@@ -146,11 +145,8 @@ class MainController extends Controller
           'description' => $description,
         ];
         $user->fill($form)->save();
-        return $form;
-      } else {
-        // Ajaxではない
-        return view('index');
-      }
+        return redirect()->action('MainController@mypage');
+
     }
 
 }

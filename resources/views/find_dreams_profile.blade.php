@@ -13,21 +13,24 @@
     @include('layouts.navbar')
 
 <!-- profile -->
-    <div class="container">
+    <div class="container ">
       <div class="row">
-        <div class="col-5">
-          <img src="{{$user->icon_url}}" alt="Avatar" class="avatar">
-          <div class="social-icons">
-            <!-- <a href="#"><img src="{{ asset('img/f-ogo_RGB_HEX-58.png') }}" alt="facebook" class="social-icon-facebook"></a> -->
-            <a class="btn pt-0" id="twitter"><img src="{{ asset('img/Twitter_Logo_Blue.png') }}" alt="twitter" class="social-icon-twitter"></a>
+        <div class="col">
+          <div class="d-flex pl-5 pt-5">
+            <div>
+              <img src="{{$user->icon_url}}" alt="Avatar" class="avatar">
+              <div class="social-icons">
+                <a class="btn pt-0" id="twitter"><img src="{{ asset('img/Twitter_Logo_Blue.png') }}" alt="twitter" class="social-icon-twitter"></a>
+              </div>
+            </div>
+            <div>
+              <h1>{{$user->name}}</h1>
+              @if(isset($user->description))
+              <p>{{$user->description}}</p>
+              @endif
+              <a href="/find-dreams/profile/achivedlist?id={{$user->id}}"><p>叶えた夢の数：{{$achievementNum}}</p></a>
+            </div>
           </div>
-        </div>
-        <div class="col-7">
-          <h1>{{$user->name}}</h1>
-          @if(isset($user->description))
-          <p>{{$user->description}}</p>
-          @endif
-          <a href="/find-dreams/profile/achivedlist?id={{$user->id}}"><p>叶えた夢の数：{{$achievementNum}}</p></a>
         </div>
       </div>
     </div>
