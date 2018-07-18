@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://dreamersbonds.herokuapp.com/'),
+    'url' => env('APP_URL', 'https://dreamersbonds.herokuapp.com'),
 
     /*
     |--------------------------------------------------------------------------
