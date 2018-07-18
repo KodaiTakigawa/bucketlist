@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>MyPage -Dreamers-</title>
+    <title>{{Auth::user()->name}} -Dreamers-</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
