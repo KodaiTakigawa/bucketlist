@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{$dream->title}} -Dreamers-</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
@@ -11,7 +12,7 @@
     @include('layouts.navbar')
 
     <!-- dream -->
-    <div class="container">
+    <div class="container pt-3">
       <div class="pb-3" style="border-bottom: solid #707070;">
         <div class="d-flex justify-content-between">
           <div class="p-2">
