@@ -18,7 +18,7 @@ var ahieve_dream = function(){
       data: data,
     });
     window.location.href = "/mypage/achivedlist";
-    window.open(`https://twitter.com/intent/tweet?text=【${dream_title}】を達成しました。\n&hashtags=Dreamers`, 'newwindow', 'width=400,height=300');
+    window.open(`https://twitter.com/intent/tweet?text=【${dream_title}】を達成しました。\n&url=https://dreamers1.herokuapp.com&hashtags=Dreamers`, 'newwindow', 'width=400,height=300');
 };
 
 Array.from(ahieve_button).forEach(function(button) {
