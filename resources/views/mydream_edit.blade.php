@@ -11,7 +11,7 @@
   <body>
     @include('layouts.navbar')
 
-    <div class="container">
+    <div class="container pt-3">
       <form action="/mypage/mydream/edit?dream_id={{$mydream->id}}" method="post">
         {{ csrf_field() }}
         <div class="form-group">
