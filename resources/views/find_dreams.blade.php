@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Find Dreams -Dreamers-</title>
+    <title>Result -Dreamers-</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/header.css') }}">
     <link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
@@ -14,17 +14,22 @@
     @include('layouts.navbar')
 
     <!-- dream -->
-    <div class="d-flex justify-content-center">
-      <form class="form-inline" action="/find-dreams" method="get">
-        {{ csrf_field() }}
-        <div>
-          <input class="form-control" type="search" name="search" placeholder="Dream" aria-label="Search">
-        </div>
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+    <div class="d-flex flex-column">
+      <div class="mx-auto m-5">
+        <form class="form-inline form-search" action="/find-dreams" method="get">
+          {{ csrf_field() }}
+          <div>
+            <input class="form-control input-search" type="search" name="search" placeholder="Dream" aria-label="Search">
+          </div>
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+      </div>
     </div>
 
     <!-- result of search -->
+    <div class="container">
+      <h2 class="list-name">RESULT</h2>
+    </div>
     <div class="container">
       @foreach($dreams as $dream)
       <div class="row">
