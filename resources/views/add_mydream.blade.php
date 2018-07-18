@@ -3,17 +3,16 @@
   <head>
     <meta charset="utf-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>mydream</title>
+    <title>Add your dream</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/addmypage.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   </head>
   <body>
     @include('layouts.navbar')
 
     <!-- dream -->
-    <div class="container">
+    <div class="container pt-3">
       <form action="/mypage/add-mydream" method="post">
         {{ csrf_field() }}
         <div class="form-group">

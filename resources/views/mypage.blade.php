@@ -18,7 +18,7 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <div class="d-flex pl-5 pt-5">
+          <div class="d-flex pt-4">
             <div>
               <img src="{{Auth::user()->icon_url}}" alt="Avatar" class="avatar">
             </div>

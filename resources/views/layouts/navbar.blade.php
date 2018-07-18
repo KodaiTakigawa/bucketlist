@@ -8,9 +8,11 @@
       <li class="nav-item mr-auto">
         <a class="nav-link" href="/">Home<span class="sr-only">(current)</span></a>
       </li>
+      @if(Auth::user() !== null)
       <li class="nav-item mr-auto">
         <a class="nav-link" href="/mypage">Mypage<span class="sr-only">(current)</span></a>
       </li>
+      @endif
     </ul>
     <form class="form-inline my-2" action="/find-dreams" method="get">
       {{ csrf_field() }}
