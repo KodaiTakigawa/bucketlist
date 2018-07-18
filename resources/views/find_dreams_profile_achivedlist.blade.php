@@ -13,24 +13,29 @@
     @include('layouts.navbar')
 
 <!-- profile -->
-    <div class="container">
+    <div class="container ">
       <div class="row">
-        <div class="col-5">
-          <img src="{{$user->icon_url}}" alt="Avatar" class="avatar">
-          <div class="social-icons">
-            <a href="#"><img src="{{ asset('img/f-ogo_RGB_HEX-58.png') }}" alt="facebook" class="social-icon-facebook"></a>
-            <a href="#"><img src="{{ asset('img/Twitter_Logo_Blue.png') }}" alt="twitter" class="social-icon-twitter"></a>
+        <div class="col">
+          <div class="d-flex pt-4">
+            <div>
+              <img src="{{$user->icon_url}}" alt="Avatar" class="avatar">
+              <div class="social-icons">
+                <a class="btn pt-0" id="twitter"><img src="{{ asset('img/Twitter_Logo_Blue.png') }}" alt="twitter" class="social-icon-twitter"></a>
+              </div>
+            </div>
+            <div class="pl-3">
+              <h4>{{$user->name}}</h4>
+              @if(isset($user->description))
+              <p>{{$user->description}}</p>
+              @endif
+              <a href="/find-dreams/profile/achivedlist?id={{$user->id}}"><p>叶えた夢の数：{{$achievementNum}}</p></a>
+            </div>
           </div>
-        </div>
-        <div class="col-7">
-          <h1>{{$user->name}}</h1>
-          @if(isset($user->description))
-          <p>{{$user->description}}</p>
-          @endif
-          <p>叶えた夢の数：{{$achievementNum}}</p>
         </div>
       </div>
     </div>
+
+    <!-- list -->
     <div class="container">
       <h2 class="list-name">ACHIVED LIST</h2>
     </div>
