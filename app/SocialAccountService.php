@@ -16,23 +16,23 @@ class SocialAccountService
             return $account->user;
         } else {
 
-        $user = User::where('email', $providerUser->getEmail())->first();
+//            $user = User::where('email', $providerUser->getEmail())->first();
 
-        if (! $user) {
-            $user = User::create([
-                'email' => $providerUser->getEmail(),
-                'name'  => $providerUser->getName(),
-                'icon_url' => $providerUser->getAvatar(),
-                'description' => ' ',
+//            if (! $user) {
+                $user = User::create([
+                    'email' => $providerUser->getEmail(),
+                    'name'  => $providerUser->getName(),
+                    'icon_url' => $providerUser->getAvatar(),
+                    'description' => ' ',
+                ]);
+//              }
+
+            $user->accounts()->create([
+                'provider_id'   => $providerUser->getId(),
+                'provider_name' => $provider,
             ]);
-        }
 
-        $user->accounts()->create([
-            'provider_id'   => $providerUser->getId(),
-            'provider_name' => $provider,
-        ]);
-
-        return $user;
+            return $user;
 
         }
     }
