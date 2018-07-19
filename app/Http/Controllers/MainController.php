@@ -111,7 +111,8 @@ class MainController extends Controller
     }
 
     function findDreamsDetail(Request $request){
-      $dream = Dream::where('id', $request->id)->with('user')->first();
+      $dream_id = $request->query('id');
+      $dream = Dream::where('id', $dream_id)->with('user')->first();
       return view('find_dreams_detail',['dream' => $dream]);
     }
 
