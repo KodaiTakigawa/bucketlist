@@ -62,12 +62,18 @@ class MainController extends Controller
     }
 
     function updateMydream(Request $request){
+      $request->validate([
+        'title' => 'required|max:255',
+      ]);
       $dream_id = $request->dream_id;
       $dream = Dream::where('user_id', Auth::user()->id)
                 ->where('id', $dream_id)
                 ->first();
       if ($request->action == 'save') {
         $form = $request->all();
+        if ($request->detail == NULL) {
+          $form['detail'] = " ";
+        }
         unset($form['_token']);
         $dream->fill($form)->save();
       } elseif ($request->action == 'delete') {
@@ -96,6 +102,9 @@ class MainController extends Controller
     }
 
     function findDreams(Request $request){
+      $request->validate([
+        'search' => 'required',
+      ]);
       $search = $request->search;
       $dreams = Dream::where('title', 'ilike', '%' . $search . '%')->with('user')->get();
       return view('find_dreams', ['dreams' => $dreams]);
@@ -139,6 +148,9 @@ class MainController extends Controller
     }
 
     function updateProfile(Request $request){
+        $request->validate([
+          'name' => 'required|max:127',
+        ]);
         $name = $request->name;
         $description = $request->description;
         $user_id = Auth::user()->id;
@@ -147,6 +159,9 @@ class MainController extends Controller
           'name' => $name,
           'description' => $description,
         ];
+        if ($request->detail == NULL) {
+          $form['description'] = " ";
+        };
         $user->fill($form)->save();
         return redirect()->action('MainController@mypage');
 

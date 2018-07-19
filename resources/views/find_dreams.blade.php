@@ -23,6 +23,15 @@
     @include('layouts.navbar')
 
     <!-- dream -->
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="d-flex flex-column">
       <div class="mx-auto m-5">
         <form class="form-inline form-search" action="/find-dreams" method="get">
