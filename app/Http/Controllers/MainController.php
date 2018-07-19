@@ -34,6 +34,9 @@ class MainController extends Controller
     }
 
     function createMydream(Request $request){
+      $request->validate([
+        'title' => 'required|max:255',
+      ]);
       $dream = new Dream;
       $form = $request->all();
       unset($form['_token']);

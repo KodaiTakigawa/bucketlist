@@ -26,6 +26,15 @@
         {{ csrf_field() }}
         <div class="form-group">
           <label for="addYourDream"><h1>Add your dream</h1></label>
+          @if ($errors->any())
+              <div class="alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+              </div>
+          @endif
           <input class="form-control form-control-lg" id="addYourDream" type="text" placeholder="Title" name="title">
         </div>
         <div class="form-group">

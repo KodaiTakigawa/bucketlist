@@ -10,7 +10,7 @@
 
       gtag('config', 'UA-122528519-1');
     </script>
-    <title>{{$user->name}} Dreams -Dreamers-</title>
+    <title>{{$dream->title}} Dreams -Dreamers-</title>
     <meta charset="utf-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
