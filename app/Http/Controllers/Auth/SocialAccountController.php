@@ -27,7 +27,7 @@ class SocialAccountController extends Controller
       try {
           $user = \Socialite::with($provider)->user();
       } catch (\Exception $e) {
-          return redirect('/login');
+          return redirect('/mypage');
       }
 
       $authUser = $accountService->findOrCreate(
