@@ -9,32 +9,31 @@ $(function() {
     $('.no_edit').hide();
     $('#edit_form').show();
   });
-});
-
-$(function() {
-  $('#upadte').click(function(){
+  
+  $('#update').click(function(){
     $('#edit_form').hide();
     $('.no_edit').show();
-    console.log(1);
 
     // var name = doucment.getElementById('name').value;
     // console.log(name);
     // var description = document.getElementById('description').value;
-    var name = document.forms.edit_form.name_update.value;
-    var description = document.forms.edit_form.description_update.value;
-    console.log(2);
+    var name = $('#name_update').val();
+    var description = $('#description_update').val();
+    console.dir(description);
     var data = {
       'name': name,
-      'desription': description,
+      'description': description,
     };
-    console.log(3);
+
     $.ajax({
       url: '/update_profile',
       type: 'POST',
       data: data,
-    })
-    $(`name`).html(name);
-    $(`description`).html(description);
-    console.log(data);
+      success: function(json){
+        $(`#name`).html(name);
+        $(`#description`).html(description);
+      }
+    });    
   });
+
 });

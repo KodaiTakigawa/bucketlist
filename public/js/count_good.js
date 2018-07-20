@@ -19,12 +19,12 @@ var countGood = function(){
   // Ajaxリクエストが成功した時発動
   .done( (data) => {
       $(`#dream_id_${dream_id}`).html(data);
-      console.log(data);
+      console.dir(data);
   })
   // Ajaxリクエストが失敗した時発動
   .fail( (data) => {
       $(`#dream_id_${dream_id}`).html(data);
-      console.log(data);
+      console.dir(data);
   })
   // Ajaxリクエストが成功・失敗どちらでも発動
   .always( (data) => {

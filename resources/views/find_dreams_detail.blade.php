@@ -25,7 +25,7 @@
     <div class="container pt-0">
       <div class="pb-3" style="border-bottom: solid #707070;">
         <div class="d-flex justify-content-between flex-column-reverse flex-sm-row">
-          @if($dream->achievement == 't')
+          @if($dream->achievement == true)
           <div>
             <p>#ACHIEVED</p>
           </div>

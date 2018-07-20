@@ -19,8 +19,8 @@ class MainController extends Controller
 
     function mypage(Request $request){
       $user_id = Auth::user()->id;
-      $mydreams = Dream::where('user_id', $user_id)->where('achievement', 'f')->get();
-      $achievementNum = Dream::where('user_id', $user_id)->where('achievement', 't')->count();
+      $mydreams = Dream::where('user_id', $user_id)->where('achievement', false)->get();
+      $achievementNum = Dream::where('user_id', $user_id)->where('achievement', true)->count();
       return view('mypage', ['mydreams' => $mydreams, 'achievementNum' => $achievementNum]);
     }
 
@@ -44,7 +44,7 @@ class MainController extends Controller
         $form['detail'] = " ";
       }
       $dream->good = 0;
-      $dream->achievement = 'f';
+      $dream->achievement = false;
       $dream->fill($form)->save();
       return redirect('/mypage');
     }
@@ -86,18 +86,18 @@ class MainController extends Controller
       $user_id = Auth::user()->id;
       // update achievemet
       $achievedDream = Dream::find($request->dream_id);
-      $achievedDream->achievement = 't';
+      $achievedDream->achievement = true;
       $achievedDream->save();
       //for show
-      $achievementNum = Dream::where('user_id', $user_id)->where('achievement', 't')->count();
-      $achievedDreams = Dream::where('user_id', $user_id)->where('achievement', 't')->get();
+      $achievementNum = Dream::where('user_id', $user_id)->where('achievement', true)->count();
+      $achievedDreams = Dream::where('user_id', $user_id)->where('achievement', true)->get();
       return view('achievedlist', ['achievedDreams' => $achievedDreams, 'achievementNum' => $achievementNum]);
     }
 
     function achievedList(){
       $user_id = Auth::user()->id;
-      $achievementNum = Dream::where('user_id', $user_id)->where('achievement', 't')->count();
-      $achievedDreams = Dream::where('user_id', $user_id)->where('achievement', 't')->get();
+      $achievementNum = Dream::where('user_id', $user_id)->where('achievement', true)->count();
+      $achievedDreams = Dream::where('user_id', $user_id)->where('achievement', true)->get();
       return view('achievedlist', ['achievedDreams' => $achievedDreams, 'achievementNum' => $achievementNum]);
     }
 
@@ -119,8 +119,8 @@ class MainController extends Controller
     function findDreamsProfile(Request $request){
       $user_id = $request->id;
       $user = User::where('id', $user_id)->first();
-      $dreams = Dream::where('user_id', $user_id)->where('achievement', 'f')->get();
-      $achievementNum = Dream::where('user_id', $user_id)->where('achievement', 't')->count();
+      $dreams = Dream::where('user_id', $user_id)->where('achievement', false)->get();
+      $achievementNum = Dream::where('user_id', $user_id)->where('achievement', true)->count();
       $twitter_id = LinkedSocialAccount::where('user_id', $user_id)->first()->provider_id;
       return view('find_dreams_profile', ['dreams' => $dreams, 'achievementNum' => $achievementNum, 'user' => $user, 'twitter_id' => $twitter_id]);
     }
@@ -128,8 +128,8 @@ class MainController extends Controller
     function findDreamsProfileachivedList(Request $request){
       $user_id = $request->id;
       $user = User::where('id', $user_id)->first();
-      $achievementNum = Dream::where('user_id', $user_id)->where('achievement', 't')->count();
-      $achievedDreams = Dream::where('user_id', $user_id)->where('achievement', 't')->get();
+      $achievementNum = Dream::where('user_id', $user_id)->where('achievement', true)->count();
+      $achievedDreams = Dream::where('user_id', $user_id)->where('achievement', true)->get();
       return view('find_dreams_profile_achivedlist', ['achievedDreams' => $achievedDreams, 'achievementNum' => $achievementNum, 'user' => $user]);
     }
 
@@ -156,15 +156,15 @@ class MainController extends Controller
         $description = $request->description;
         $user_id = Auth::user()->id;
         $user = User::find($user_id);
-        $form =[
+        $form = [
           'name' => $name,
           'description' => $description,
         ];
-        if ($request->detail == NULL) {
+        if ($description == NULL) {
           $form['description'] = " ";
         };
         $user->fill($form)->save();
-        return redirect()->action('MainController@mypage');
+        return response()->json(200);
 
     }
 

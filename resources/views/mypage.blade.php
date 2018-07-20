@@ -51,7 +51,7 @@
               <a class="btn btn-outline-secondary" id="edit">Edit Profile</a>
             </div>
             <!-- for edit profile -->
-            <form action="/update_profile" method="post" style="display: none;" id="edit_form">
+            <div style="display: none;" id="edit_form">
               {{ csrf_field() }}
               <div class="d-flex pb-0">
                 <div class="mr-auto p-2">
@@ -61,7 +61,7 @@
                   </div>
                 </div>
                 <div class="p-2 ml-auto">
-                  <button class="btn btn-outline-secondary" type="submit" id="update">Save</button>
+                  <button class="btn btn-outline-secondary" id="update">Save</button>
                 </div>
               </div>
               <div class="form-group">
@@ -72,7 +72,7 @@
                 <textarea class="form-control" name="description" rows="3" cols="80" id="description_update"></textarea>
                 @endif
               </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>
