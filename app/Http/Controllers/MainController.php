@@ -116,58 +116,10 @@ class MainController extends Controller
       $user_id = $dream->user_id;
       $twitter_screen_name = LinkedSocialAccount::where('user_id', $user_id)->first()->screen_name;
 
-      // Bearer token取得
-      // 設定項目
-      $api_key = env('TWITTER_CLIENT_ID');	// APIキー
-      $api_secret = env('TWITTER_CLIENT_SECRET') ;	// APIシークレット
-
-      // クレデンシャルを作成
-      $credential = base64_encode( $api_key . ":" . $api_secret ) ;
-
-      // リクエストURL
-      $request_url = "https://api.twitter.com/oauth2/token" ;
-
-      // リクエスト用のコンテキストを作成する
-      $context = array(
-        "http" => array(
-          "method" => "POST" , // リクエストメソッド
-          "header" => array(			  // ヘッダー
-            "Authorization: Basic " . $credential ,
-            "Content-Type: application/x-www-form-urlencoded;charset=UTF-8" ,
-          ) ,
-          "content" => http_build_query(	// ボディ
-            array(
-              "grant_type" => "client_credentials" ,
-            )
-          ) ,
-        ) ,
-      ) ;
-
-      // cURLを使ってリクエスト
-      $curl = curl_init() ;
-      curl_setopt( $curl, CURLOPT_URL , $request_url ) ;	// リクエストURL
-      curl_setopt( $curl, CURLOPT_HEADER, true ) ;	// ヘッダーを取得する 
-      curl_setopt( $curl, CURLOPT_CUSTOMREQUEST , $context["http"]["method"] ) ;	// メソッド
-      curl_setopt( $curl, CURLOPT_SSL_VERIFYPEER , false ) ;	// 証明書の検証を行わない
-      curl_setopt( $curl, CURLOPT_RETURNTRANSFER , true ) ;	// curl_execの結果を文字列で返す
-      curl_setopt( $curl, CURLOPT_HTTPHEADER , $context["http"]["header"] ) ;	// ヘッダー
-      curl_setopt( $curl, CURLOPT_POSTFIELDS , $context["http"]["content"] ) ;	// リクエストボディ
-      curl_setopt( $curl, CURLOPT_TIMEOUT , 5 ) ;	// タイムアウトの秒数
-      $res1 = curl_exec( $curl ) ;
-      $res2 = curl_getinfo( $curl ) ;
-      curl_close( $curl ) ;
-
-      // 取得したデータ
-      $response = substr( $res1, $res2["header_size"] ) ;	// 取得したデータ(JSONなど)
-      // $header = substr( $res1, 0, $res2["header_size"] ) ;	// レスポンスヘッダー (検証に利用したい場合にどうぞ)
-
-      // JSONを配列に変換する
-      $arr = json_decode( $response, true ) ;
-
 
       //twitterから検索
       // 設定
-      $bearer_token = $arr['access_token'] ;	// ベアラートークン ;	// リクエストURL
+      $bearer_token = env('BEARER_TOKEN') ;	// ベアラートークン ;	// リクエストURL
       $request_url = 'https://api.twitter.com/1.1/search/tweets.json';
 
       // userに応じて、tweet取得
@@ -215,7 +167,7 @@ class MainController extends Controller
       // $html .= 	'<h3>レスポンスヘッダー</h3>' ;
       // $html .= 	'<p><textarea rows="8">' . $header . '</textarea></p>' ;
       // $html .= '<p>' . $obj->statuses[0]->text . '</p>';
-
+      
       for($i = 0; $i <= 5; $i++){
         $tweets_for_dream[] = $obj->statuses[$i]->text;
       }
