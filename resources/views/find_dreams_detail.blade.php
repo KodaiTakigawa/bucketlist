@@ -20,16 +20,12 @@
   </head>
   <body>
     @include('layouts.navbar')
+    <p>{{print_r($obj->statuses[0]->entities->media[0]->media_url_https)}}</p>
 
     <!-- dream -->
     <div class="container pt-0">
       <div class="pb-3" style="border-bottom: solid #707070;">
         <div class="d-flex justify-content-between flex-column-reverse flex-sm-row">
-          @if($dream->achievement == true)
-          <div>
-            <p>#ACHIEVED</p>
-          </div>
-          @endif
           <div class="d-inline-flex">
             <div class=" align-self-center p-2">
               <h1>{{$dream->title}}</h1>
@@ -49,6 +45,11 @@
             <a href="/find-dreams/profile?id={{$dream->user->id}}"><img src="{{$dream->user->icon_url}}" alt="Avatar" class="avatar mr-3"></a>
           </div>
         </div>
+        @if($dream->achievement == true)
+          <div>
+            <p class="mb-0">#ACHIEVED</p>
+          </div>
+          @endif
       </div>
       <div class="dream-detail">
         <h2>Detail</h2>
@@ -59,7 +60,10 @@
       <div class="bg-white">
       <h2>一週間の軌跡</h2>
         @foreach($tweets_for_dream as $tweet)
-          <p>{{$tweet}}</p>
+          <p>{{$tweet['text']}}</p>
+          @if(isset($tweet['media_url']))
+            <img src="{{$tweet['media_url']}}" alt="img">
+          @endif
         @endforeach
       </div>
     </div>

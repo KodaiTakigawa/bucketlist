@@ -155,6 +155,7 @@ class MainController extends Controller
 
       // JSONを変換
       $obj = json_decode( $json ) ;	// オブジェクトに変換
+  //    $obj = json_decode( $json,true ); //連想配列に変換
 
       // HTML用
       $html = '' ;
@@ -167,15 +168,18 @@ class MainController extends Controller
       // $html .= 	'<h3>レスポンスヘッダー</h3>' ;
       // $html .= 	'<p><textarea rows="8">' . $header . '</textarea></p>' ;
       // $html .= '<p>' . $obj->statuses[0]->text . '</p>';
-      
+
       for($i = 0; $i <= 5; $i++){
-        $tweets_for_dream[] = $obj->statuses[$i]->text;
+        $tweets_for_dream[$i]['text'] = $obj->statuses[$i]->text;
+        if (isset($obj->statuses[$i]->entities->media[0]->media_url_https)) {
+          $tweets_for_dream[$i]['media_url'] = $obj->statuses[$i]->entities->media[0]->media_url_https;
+        }       
       }
 
       // HTMLを出力
       echo $html ;
 
-      return view('find_dreams_detail',['dream' => $dream, 'twitter_screen_name' => $twitter_screen_name, 'tweets_for_dream' => $tweets_for_dream]);
+      return view('find_dreams_detail',['dream' => $dream, 'twitter_screen_name' => $twitter_screen_name, 'tweets_for_dream' => $tweets_for_dream, 'obj' => $obj]);
     }
 
     function findDreamsProfile(Request $request){
