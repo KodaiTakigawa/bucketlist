@@ -66,6 +66,9 @@
       </div>
       @endforeach
     </div>
+    <div>
+    <a class="twitter-timeline" data-theme="light" href="https://twitter.com/{{$twitter_screen_name}}?ref_src=twsrc%5Etfw">Tweets by kodai_t7</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
   </body>
   <script src="{{ asset('js/app.js') }}"></script>
   <script type="text/javascript">

@@ -56,6 +56,12 @@
           {{$dream->detail}}
         </p>
       </div>
+      <div class="bg-white">
+      <h2>一週間の軌跡</h2>
+        @foreach($tweets_for_dream as $tweet)
+          <p>{{$tweet}}</p>
+        @endforeach
+      </div>
     </div>
   </body>
   <script src="{{ asset('js/app.js') }}"></script>
