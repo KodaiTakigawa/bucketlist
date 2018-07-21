@@ -13,6 +13,7 @@ class SocialAccountService
                    ->first();
 
         if ($account) {
+            $account->screen_name = $providerUser->getNickname();
             return $account->user;
         } else {
 
@@ -30,6 +31,7 @@ class SocialAccountService
             $user->accounts()->create([
                 'provider_id'   => $providerUser->getId(),
                 'provider_name' => $provider,
+                'screen_name' => $providerUser->getNickname(),
             ]);
 
             return $user;
