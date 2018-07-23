@@ -20,7 +20,6 @@
   </head>
   <body>
     @include('layouts.navbar')
-    <p>{{print_r($obj->statuses[0]->entities->media[0]->media_url_https)}}</p>
 
     <!-- dream -->
     <div class="container pt-0">
@@ -58,13 +57,17 @@
         </p>
       </div>
       <div class="bg-white">
-      <h2>一週間の軌跡</h2>
+        <div class="d-flex">
+          <h2>一週間の軌跡</h2>
+        </div>
+        <div>
         @foreach($tweets_for_dream as $tweet)
           <p>{{$tweet['text']}}</p>
           @if(isset($tweet['media_url']))
-            <img src="{{$tweet['media_url']}}" alt="img">
+            <img src="{{$tweet['media_url']}}" alt="img" class="img-fluid mt=0">
           @endif
         @endforeach
+        </div>
       </div>
     </div>
   </body>
