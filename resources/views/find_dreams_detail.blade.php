@@ -72,7 +72,10 @@
             @endif
           </div>
         @endforeach
-        </div>      
+        </div>
+        <div class="ml-auto">
+          <p class="font-italic text-right" style="font-size:small">from twitter</p>
+        </div>
       </div>
     </div>
   </body>

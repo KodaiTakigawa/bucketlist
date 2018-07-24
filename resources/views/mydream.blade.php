@@ -40,7 +40,11 @@
         </p>
       </div>
       <div>
-        <h4>For Dream</h4>     
+        <div class="d-flex">
+          <div>
+            <h4>For Dream</h4>
+          </div>
+        </div>
         <div>
         @foreach($tweets_for_dream as $tweet)
           <div class="media border border-info rounded bg-white mb-1 p-1">
@@ -55,7 +59,10 @@
             @endif
           </div>
         @endforeach
-        </div>      
+        </div>
+        <div class="ml-auto">
+          <p class="font-italic text-right" style="font-size:small">from twitter</p>
+        </div>
       </div>
     </div>
   </body>

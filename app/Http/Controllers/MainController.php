@@ -240,7 +240,7 @@ class MainController extends Controller
       // HTMLを出力
       //echo $html ;
 
-      for($i = 0; $i <= 5; $i++){
+      for($i = 0; $i <= count($obj->statuses)-1; $i++){
         $tweets_for_dream[$i]['text'] = $obj->statuses[$i]->text;
         $tweets_for_dream[$i]['created_at'] = date("Y/m/d", strtotime($obj->statuses[$i]->created_at) + 32400); //In Japan +32400
 
