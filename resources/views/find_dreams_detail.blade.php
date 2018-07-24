@@ -50,7 +50,7 @@
           </div>
           @endif
       </div>
-      <div class="dream-detail">
+      <div class="dream-detail pb-3">
         <h2>Detail</h2>
         <p>
           {{$dream->detail}}

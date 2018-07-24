@@ -33,17 +33,15 @@
         </div>
       </div>
 <!-- dream detail -->
-      <div class="dream-detail">
+      <div class="dream-detail pb-3">
         <h2>Detail</h2>
         <p>
           {{$dream->detail}}
         </p>
       </div>
       <div>
-        <div class="d-flex">
-          <div>
-            <h4>For Dream</h4>
-          </div>
+        <div>
+          <h4>For Dream</h4>
         </div>
         <div>
         @foreach($tweets_for_dream as $tweet)

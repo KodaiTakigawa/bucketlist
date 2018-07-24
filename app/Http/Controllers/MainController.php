@@ -19,7 +19,7 @@ class MainController extends Controller
 
     function mypage(Request $request){
       $user_id = Auth::user()->id;
-      $mydreams = Dream::where('user_id', $user_id)->where('achievement', false)->get();
+      $mydreams = Dream::where('user_id', $user_id)->where('achievement', false)->orderBy('created_at', 'desc')->get();
       $achievementNum = Dream::where('user_id', $user_id)->where('achievement', true)->count();
       return view('mypage', ['mydreams' => $mydreams, 'achievementNum' => $achievementNum]);
     }
@@ -103,7 +103,7 @@ class MainController extends Controller
     function achievedList(){
       $user_id = Auth::user()->id;
       $achievementNum = Dream::where('user_id', $user_id)->where('achievement', true)->count();
-      $achievedDreams = Dream::where('user_id', $user_id)->where('achievement', true)->get();
+      $achievedDreams = Dream::where('user_id', $user_id)->where('achievement', true)->orderBy('created_at', 'desc')->get();
       return view('achievedlist', ['achievedDreams' => $achievedDreams, 'achievementNum' => $achievementNum]);
     }
 
@@ -112,26 +112,23 @@ class MainController extends Controller
         'search' => 'required',
       ]);
       $search = $request->search;
-      $dreams = Dream::where('title', 'ilike', '%' . $search . '%')->with('user')->get();
+      $dreams = Dream::where('title', 'ilike', '%' . $search . '%')->with('user')->orderBy('created_at', 'desc')->get();
       return view('find_dreams', ['dreams' => $dreams]);
     }
 
     function findDreamsDetail(Request $request){
       $dream_id = $request->query('id');
       $dream = Dream::where('id', $dream_id)->with('user')->first();
-
       $tweets = $this->searchFromTwitter($dream);
-
       $twitter_screen_name = $tweets['twitter_screen_name'];
       $tweets_for_dream = $tweets['tweets_for_dream'];
-
       return view('find_dreams_detail',['dream' => $dream, 'twitter_screen_name' => $twitter_screen_name, 'tweets_for_dream' => $tweets_for_dream]);
     }
 
     function findDreamsProfile(Request $request){
       $user_id = $request->id;
       $user = User::where('id', $user_id)->first();
-      $dreams = Dream::where('user_id', $user_id)->where('achievement', false)->get();
+      $dreams = Dream::where('user_id', $user_id)->where('achievement', false)->orderBy('created_at', 'desc')->get();
       $achievementNum = Dream::where('user_id', $user_id)->where('achievement', true)->count();
       $twitter_id = LinkedSocialAccount::where('user_id', $user_id)->first()->provider_id;
       $twitter_screen_name = LinkedSocialAccount::where('user_id', $user_id)->first()->screen_name;

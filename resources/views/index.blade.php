@@ -23,7 +23,7 @@
         <div class="alert alert-danger">
             <ul>
                 @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
+                  <li>{{ $error }}</li>
                 @endforeach
             </ul>
         </div>
@@ -38,9 +38,11 @@
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
       </div>
+      @if(Auth::user() == null)
       <div class="mx-auto mb-5">
         <a class="btn btn-info social-login-btn" href="/login/twitter" role="button">Login with Twitter</a>
       </div>
+      @endif
       <div class="mx-auto mb-5">
         <h1>Dreamersとは・・・</h1>
         <p>夢や目標に向かっている人達(Dreamer)が<br></p>
