@@ -39,6 +39,31 @@
           {{$dream->detail}}
         </p>
       </div>
+      <div>
+        <div class="d-flex">
+          <div>
+            <h4>For Dream</h4>
+          </div>
+        </div>
+        <div>
+        @foreach($tweets_for_dream as $tweet)
+          <div class="media border border-info rounded bg-white mb-1 p-1">
+            <div class="media-body">
+              {{$tweet['created_at']}}<br>
+              {{$tweet['text']}}
+            </div>
+            @if(isset($tweet['media_url']))
+            <div>
+              <img class="img-fluid" src="{{$tweet['media_url']}}" alt="Generic placeholder image">
+            </div>
+            @endif
+          </div>
+        @endforeach
+        </div>
+        <div class="ml-auto">
+          <p class="font-italic text-right" style="font-size:small">from twitter</p>
+        </div>
+      </div>
     </div>
   </body>
   <script src="{{ asset('js/app.js') }}"></script>

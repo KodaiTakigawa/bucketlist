@@ -25,11 +25,6 @@
     <div class="container pt-0">
       <div class="pb-3" style="border-bottom: solid #707070;">
         <div class="d-flex justify-content-between flex-column-reverse flex-sm-row">
-          @if($dream->achievement == true)
-          <div>
-            <p>#ACHIEVED</p>
-          </div>
-          @endif
           <div class="d-inline-flex">
             <div class=" align-self-center p-2">
               <h1>{{$dream->title}}</h1>
@@ -49,12 +44,38 @@
             <a href="/find-dreams/profile?id={{$dream->user->id}}"><img src="{{$dream->user->icon_url}}" alt="Avatar" class="avatar mr-3"></a>
           </div>
         </div>
+        @if($dream->achievement == true)
+          <div>
+            <p class="mb-0">#ACHIEVED</p>
+          </div>
+          @endif
       </div>
       <div class="dream-detail">
         <h2>Detail</h2>
         <p>
           {{$dream->detail}}
         </p>
+      </div>
+      <div>
+        <h4>For Dream</h4>     
+        <div>
+        @foreach($tweets_for_dream as $tweet)
+          <div class="media border border-info rounded bg-white mb-1 p-1">
+            <div class="media-body">
+              {{$tweet['created_at']}}<br>
+              {{$tweet['text']}}
+            </div>
+            @if(isset($tweet['media_url']))
+            <div>
+              <img class="img-fluid" src="{{$tweet['media_url']}}" alt="Generic placeholder image">
+            </div>
+            @endif
+          </div>
+        @endforeach
+        </div>
+        <div class="ml-auto">
+          <p class="font-italic text-right" style="font-size:small">from twitter</p>
+        </div>
       </div>
     </div>
   </body>
