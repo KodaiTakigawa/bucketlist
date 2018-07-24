@@ -37,7 +37,7 @@
         <form class="form-inline form-search" action="/find-dreams" method="get">
           {{ csrf_field() }}
           <div>
-            <input class="form-control input-search" type="search" name="search" placeholder="Dream" aria-label="Search">
+            <input class="form-control input-search" type="search" name="search" placeholder="Dream" aria-label="Search" value="{{$_GET['search']}}">
           </div>
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
@@ -49,6 +49,9 @@
       <h2 class="list-name">RESULT</h2>
     </div>
     <div class="container">
+      @if(count($dreams) == 0)
+        <p>No results</p>
+      @endif
       @foreach($dreams as $dream)
       <div class="row">
         <div class="card mx-auto">

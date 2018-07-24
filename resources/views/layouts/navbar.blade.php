@@ -17,7 +17,11 @@
     <form class="form-inline my-2" action="/find-dreams" method="get">
       {{ csrf_field() }}
       <div>
+        @if(isset($_GET['search']))
+        <input class="form-control mr-sm-2" type="search" name="search" placeholder="Dream" aria-label="Search"  value="{{$_GET['search']}}">
+        @else
         <input class="form-control mr-sm-2" type="search" name="search" placeholder="Dream" aria-label="Search">
+        @endif
       </div>
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
