@@ -56,18 +56,23 @@
           {{$dream->detail}}
         </p>
       </div>
-      <div class="bg-white">
-        <div class="d-flex">
-          <h2>一週間の軌跡</h2>
-        </div>
+      <div>
+        <h4>For Dream</h4>     
         <div>
         @foreach($tweets_for_dream as $tweet)
-          <p>{{$tweet['text']}}</p>
-          @if(isset($tweet['media_url']))
-            <img src="{{$tweet['media_url']}}" alt="img" class="img-fluid mt=0">
-          @endif
+          <div class="media border border-info rounded bg-white mb-1 p-1">
+            <div class="media-body">
+              {{$tweet['created_at']}}<br>
+              {{$tweet['text']}}
+            </div>
+            @if(isset($tweet['media_url']))
+            <div>
+              <img class="img-fluid" src="{{$tweet['media_url']}}" alt="Generic placeholder image">
+            </div>
+            @endif
+          </div>
         @endforeach
-        </div>
+        </div>      
       </div>
     </div>
   </body>

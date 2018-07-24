@@ -186,7 +186,6 @@ class MainController extends Controller
       $user_id = $dream->user_id;
       $twitter_screen_name = LinkedSocialAccount::where('user_id', $user_id)->first()->screen_name;
 
-
       //twitterから検索
       // 設定
       $bearer_token = env('BEARER_TOKEN') ;	// ベアラートークン ;	// リクエストURL
@@ -225,7 +224,6 @@ class MainController extends Controller
 
       // JSONを変換
       $obj = json_decode( $json ) ;	// オブジェクトに変換
-  //    $obj = json_decode( $json,true ); //連想配列に変換
 
       // HTML用
       $html = '' ;
@@ -239,15 +237,17 @@ class MainController extends Controller
       // $html .= 	'<p><textarea rows="8">' . $header . '</textarea></p>' ;
       // $html .= '<p>' . $obj->statuses[0]->text . '</p>';
 
+      // HTMLを出力
+      //echo $html ;
+
       for($i = 0; $i <= 5; $i++){
         $tweets_for_dream[$i]['text'] = $obj->statuses[$i]->text;
+        $tweets_for_dream[$i]['created_at'] = date("Y/m/d", strtotime($obj->statuses[$i]->created_at) + 32400); //In Japan +32400
+
         if (isset($obj->statuses[$i]->entities->media[0]->media_url_https)) {
           $tweets_for_dream[$i]['media_url'] = $obj->statuses[$i]->entities->media[0]->media_url_https;
         }
       }
-
-      // HTMLを出力
-      echo $html ;
 
       $tweets = ['twitter_screen_name' => $twitter_screen_name, 'tweets_for_dream' => $tweets_for_dream];
 
