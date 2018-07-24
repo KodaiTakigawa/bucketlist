@@ -20,14 +20,25 @@
   <body>
     @include('layouts.navbar')
 
+
     <!-- dream -->
     <div class="container pt-3">
-      <div class="pb-3" style="border-bottom: solid #707070;">
-        <div class="d-flex justify-content-between">
-          <div class="p-2">
-            <h1>{{$dream->title}}</h1>
+      <div class="pb-1" style="border-bottom: solid #707070;">
+        <div class="d-flex">
+          <div class="d-flex justify-content-between">
+            <div class="p-2">
+              <h1>{{$dream->title}}</h1>
+            </div>
+            <div class="d-flex pb-0">
+              <div class="good-button pt-3" id="good_button_{{$dream->id}}" data-value="{{$dream->id}}">
+                <img class="img-fluid" src="{{ asset('img/fire.png') }}">
+              </div>
+              <div class="pt-3">
+                <p id="dream_id_{{$dream->id}}">{{$dream->good}}</p>
+              </div>
+            </div>
           </div>
-          <div class="p-2">
+          <div class="ml-auto">
             <a class="btn btn-outline-secondary" href="/mypage/mydream/edit?dream_id={{$dream->id}}">Edit</a>
           </div>
         </div>

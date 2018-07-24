@@ -38,34 +38,47 @@
               @if(isset($user->description))
               <p>{{$user->description}}</p>
               @endif
-              <a href="/find-dreams/profile/achivedlist?id={{$user->id}}"><p>叶えた夢の数：{{$achievementNum}}</p></a>
+              <a href="/find-dreams/profile/achivedlist?id={{$user->id}}"><p>叶えた夢の数：{{$achievement_num}}</p></a>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- list -->
+    <!-- dream list -->
     <div class="container">
       <h2 class="list-name">ACHIVED LIST</h2>
     </div>
     <div class="container">
-      @foreach($achievedDreams as $achievedDream)
+      @foreach($achieved_dreams as $achieved_dream)
       <div class="row">
         <div class="card mx-auto">
-          <div class="card-body pb-0">
-            <p>{{$achievedDream->title}}</p>
-            <div class="float-right">
-              <div class="good-button">
-                <p class="float-right">777</p>
-                <img src="{{ asset('img/fire.png') }}" style="width">
+          <div class="card-body">
+            <div class="d-flex pb-0">
+              <div class="mr-auto">
+                <a href="/find-dreams/detail?id={{$achieved_dream->id}}" class="text-dark"><p>{{$achieved_dream->title}}</p></a>
+              </div>
+              <div class="d-flex justify-content-end flex-sm-column p-0">
+                <div class="d-flex justify-content-end">
+                  <div class="good-button">
+                    <img src="{{ asset('img/fire.png') }}" id='good'>
+                  </div>
+                  <div>
+                    <p>{{ $achieved_dream->good }}</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <p class="text-right mb-0" style="font-size: .5rem;">{{$achievedDream->updated_at}}に達成しました。</p>
+          <p class="text-right mb-0" style="font-size: .5rem;">{{$achieved_dream->updated_at}}に達成しました。</p>
         </div>
       </div>
       @endforeach
+      <div class="d-flex justify-content-center">
+        <div>
+        {{ $achieved_dreams->appends(['sort' => $sort, 'id' => $user->id])->links() }}
+        </div>
+      </div>
     </div>
   </body>
   <script src="{{ asset('js/app.js') }}"></script>

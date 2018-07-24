@@ -45,7 +45,7 @@
               @if(isset(Auth::user()->description))
               <p id="description">{{Auth::user()->description}}</p>
               @endif
-              <a href="/mypage/achivedlist"><p>叶えた夢の数：{{$achievementNum}}</p></a>
+              <a href="/mypage/achivedlist"><p>叶えた夢の数：{{$achievement_num}}</p></a>
             </div>
             <div class="ml-auto no_edit">
               <a class="btn btn-outline-secondary" id="edit">Edit Profile</a>
@@ -120,6 +120,11 @@
         </div>
       </div>
       @endforeach
+      <div class="d-flex justify-content-center">
+        <div>
+        {{ $mydreams->appends(['sort' => $sort])->links() }}
+        </div>
+      </div>
     </div>
   </body>
   <script src="{{ asset('js/app.js') }}"></script>

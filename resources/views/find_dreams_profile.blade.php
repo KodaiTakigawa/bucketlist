@@ -38,7 +38,7 @@
               @if(isset($user->description))
               <p>{{$user->description}}</p>
               @endif
-              <a href="/find-dreams/profile/achivedlist?id={{$user->id}}"><p>叶えた夢の数：{{$achievementNum}}</p></a>
+              <a href="/find-dreams/profile/achivedlist?id={{$user->id}}"><p>叶えた夢の数：{{$achievement_num}}</p></a>
             </div>
           </div>
         </div>
@@ -65,9 +65,14 @@
         </div>
       </div>
       @endforeach
+      <div class="d-flex justify-content-center">
+        <div>
+        {{ $dreams->appends(['sort' => $sort, 'id' => $user->id])->links() }}
+        </div>
+      </div>
     </div>
     <div class="d-flex justify-content-center">
-      <a class="twitter-timeline" width="320px" height="400px" data-theme="light" href="https://twitter.com/{{$twitter_screen_name}}?ref_src=twsrc%5Etfw">Tweets by kodai_t7</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+      <a class="twitter-timeline" width="320px" height="400px" data-theme="light" href="https://twitter.com/{{$twitter_screen_name}}?ref_src=twsrc%5Etfw">Tweets by {{$twitter_screen_name}}</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     </div>
   </body>
   <script src="{{ asset('js/app.js') }}"></script>

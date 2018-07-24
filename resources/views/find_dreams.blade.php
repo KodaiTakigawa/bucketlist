@@ -78,6 +78,11 @@
         </div>
       </div>
       @endforeach
+      <div class="d-flex justify-content-center">
+        <div>
+        {{ $dreams->appends(['sort' => $sort])->links() }}
+        </div>
+      </div>
     </div>
   </body>
   <script src="{{ asset('js/app.js') }}"></script>

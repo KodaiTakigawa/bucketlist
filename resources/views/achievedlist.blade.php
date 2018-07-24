@@ -34,7 +34,7 @@
               @if(isset(Auth::user()->description))
               <p id="description">{{Auth::user()->description}}</p>
               @endif
-              <a href="/mypage/achivedlist"><p>叶えた夢の数：{{$achievementNum}}</p></a>
+              <a href="/mypage/achivedlist"><p>叶えた夢の数：{{$achievement_num}}</p></a>
             </div>
             <div class="ml-auto no_edit">
               <a class="btn btn-outline-secondary" id="edit">Edit Profile</a>
@@ -67,27 +67,32 @@
       </div>
     </div>
 
-<!-- achievedDreams -->
+<!-- achieved_dreams -->
     <div class="container p-0">
       <h2 class="list-name">ACHIEVED LIST</h2>
     </div>
     <div class="container">
-      @foreach($achievedDreams as $achievedDream)
+      @foreach($achieved_dreams as $achieved_dream)
       <div class="row">
         <div class="card mx-auto">
           <div class="card-body pb-0">
-            <a href="/mypage/mydream?dream_id={{$achievedDream->id}}" class="text-dark float-left"><p>{{$achievedDream->title}}</p></a>
+            <a href="/mypage/mydream?dream_id={{$achieved_dream->id}}" class="text-dark float-left"><p>{{$achieved_dream->title}}</p></a>
             <div class="float-right">
               <div class="good-button">
-                <p class="float-right">{{$achievedDream->good}}</p>
+                <p class="float-right">{{$achieved_dream->good}}</p>
                 <img src="{{ asset('img/fire.png') }}" style="width">
               </div>
             </div>
           </div>
-          <p class="text-right mb-0" style="font-size: .5rem;">{{$achievedDream->updated_at}}に達成しました。</p>
+          <p class="text-right mb-0" style="font-size: .5rem;">{{$achieved_dream->updated_at}}に達成しました。</p>
         </div>
       </div>
       @endforeach
+      <div class="d-flex justify-content-center">
+        <div>
+        {{ $achieved_dreams->appends(['sort' => $sort])->links() }}
+        </div>
+      </div>
     </div>
   </body>
   <script src="{{ asset('js/app.js') }}"></script>

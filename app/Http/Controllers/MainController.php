@@ -19,16 +19,16 @@ class MainController extends Controller
 
     function mypage(Request $request){
       $user_id = Auth::user()->id;
-      $mydreams = Dream::where('user_id', $user_id)->where('achievement', false)->orderBy('created_at', 'desc')->get();
-      $achievementNum = Dream::where('user_id', $user_id)->where('achievement', true)->count();
-      return view('mypage', ['mydreams' => $mydreams, 'achievementNum' => $achievementNum]);
+      $mydreams = Dream::where('user_id', $user_id)->where('achievement', false)->orderBy('created_at', 'desc')->paginate(10);
+      $achievement_num = Dream::where('user_id', $user_id)->where('achievement', true)->count();
+
+      $sort = $request->sort;
+      return view('mypage', ['mydreams' => $mydreams, 'achievement_num' => $achievement_num, 'sort' => $sort]);
     }
 
     function mydream(Request $request){
       $dream = Dream::find($request->dream_id);
-
       $tweets = $this->searchFromTwitter($dream);
-
       $twitter_screen_name = $tweets['twitter_screen_name'];
       $tweets_for_dream = $tweets['tweets_for_dream'];
       
@@ -91,20 +91,21 @@ class MainController extends Controller
     function achieveDream(Request $request){
       $user_id = Auth::user()->id;
       // update achievemet
-      $achievedDream = Dream::find($request->dream_id);
-      $achievedDream->achievement = true;
-      $achievedDream->save();
+      $achieved_dream = Dream::find($request->dream_id);
+      $achieved_dream->achievement = true;
+      $achieved_dream->save();
       //for show
-      $achievementNum = Dream::where('user_id', $user_id)->where('achievement', true)->count();
-      $achievedDreams = Dream::where('user_id', $user_id)->where('achievement', true)->get();
-      return view('achievedlist', ['achievedDreams' => $achievedDreams, 'achievementNum' => $achievementNum]);
+      $achievement_num = Dream::where('user_id', $user_id)->where('achievement', true)->count();
+      $achieved_dreams = Dream::where('user_id', $user_id)->where('achievement', true)->get();
+      return view('achievedlist', ['achieved_dreams' => $achieved_dreams, 'achievement_num' => $achievement_num]);
     }
 
-    function achievedList(){
+    function achievedList(Request $request){
       $user_id = Auth::user()->id;
-      $achievementNum = Dream::where('user_id', $user_id)->where('achievement', true)->count();
-      $achievedDreams = Dream::where('user_id', $user_id)->where('achievement', true)->orderBy('created_at', 'desc')->get();
-      return view('achievedlist', ['achievedDreams' => $achievedDreams, 'achievementNum' => $achievementNum]);
+      $achievement_num = Dream::where('user_id', $user_id)->where('achievement', true)->count();
+      $achieved_dreams = Dream::where('user_id', $user_id)->where('achievement', true)->orderBy('created_at', 'desc')->paginate(10);
+      $sort = $request->sort;
+      return view('achievedlist', ['achieved_dreams' => $achieved_dreams, 'achievement_num' => $achievement_num, 'sort' => $sort]);
     }
 
     function findDreams(Request $request){
@@ -112,8 +113,9 @@ class MainController extends Controller
         'search' => 'required',
       ]);
       $search = $request->search;
-      $dreams = Dream::where('title', 'ilike', '%' . $search . '%')->with('user')->orderBy('created_at', 'desc')->get();
-      return view('find_dreams', ['dreams' => $dreams]);
+      $dreams = Dream::where('title', 'ilike', '%' . $search . '%')->with('user')->orderBy('created_at', 'desc')->paginate(10);
+      $sort = $request->sort;
+      return view('find_dreams', ['dreams' => $dreams, 'sort' => $sort]);
     }
 
     function findDreamsDetail(Request $request){
@@ -128,19 +130,21 @@ class MainController extends Controller
     function findDreamsProfile(Request $request){
       $user_id = $request->id;
       $user = User::where('id', $user_id)->first();
-      $dreams = Dream::where('user_id', $user_id)->where('achievement', false)->orderBy('created_at', 'desc')->get();
-      $achievementNum = Dream::where('user_id', $user_id)->where('achievement', true)->count();
+      $dreams = Dream::where('user_id', $user_id)->where('achievement', false)->orderBy('created_at', 'desc')->paginate(10);
+      $achievement_num = Dream::where('user_id', $user_id)->where('achievement', true)->count();
       $twitter_id = LinkedSocialAccount::where('user_id', $user_id)->first()->provider_id;
       $twitter_screen_name = LinkedSocialAccount::where('user_id', $user_id)->first()->screen_name;
-      return view('find_dreams_profile', ['dreams' => $dreams, 'achievementNum' => $achievementNum, 'user' => $user, 'twitter_id' => $twitter_id, 'twitter_screen_name' => $twitter_screen_name]);
+      $sort = $request->sort;
+      return view('find_dreams_profile', ['dreams' => $dreams, 'achievement_num' => $achievement_num, 'user' => $user, 'twitter_id' => $twitter_id, 'twitter_screen_name' => $twitter_screen_name, 'sort' => $sort]);
     }
 
     function findDreamsProfileachivedList(Request $request){
       $user_id = $request->id;
       $user = User::where('id', $user_id)->first();
-      $achievementNum = Dream::where('user_id', $user_id)->where('achievement', true)->count();
-      $achievedDreams = Dream::where('user_id', $user_id)->where('achievement', true)->get();
-      return view('find_dreams_profile_achivedlist', ['achievedDreams' => $achievedDreams, 'achievementNum' => $achievementNum, 'user' => $user]);
+      $achievement_num = Dream::where('user_id', $user_id)->where('achievement', true)->count();
+      $achieved_dreams = Dream::where('user_id', $user_id)->where('achievement', true)->paginate(10);
+      $sort = $request->sort;
+      return view('find_dreams_profile_achivedlist', ['achieved_dreams' => $achieved_dreams, 'achievement_num' => $achievement_num, 'user' => $user, 'sort' => $sort]);
     }
 
     function countGoods(Request $request){
