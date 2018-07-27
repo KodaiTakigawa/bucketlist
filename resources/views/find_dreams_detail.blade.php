@@ -30,7 +30,7 @@
               <h1>{{$dream->title}}</h1>
             </div>
             <div class="d-flex pb-0">
-              <div class="good-button　align-items-center" id="good_button_{{$dream->id}}" data-value="{{$dream->id}}">
+              <div class="good-button" id="good_button_{{$dream->id}}" data-value="{{$dream->id}}">
                 <img class="img-fluid" src="{{ asset('img/fire.png') }}">
               </div>
               <div class="pt-3">
