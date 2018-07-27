@@ -51,6 +51,7 @@
         <p>夢や目標を登録して、仲間を見つけよう！</p>
       </div>
     </div>
+    @include('layouts.footer')
   </body>
   <script src="{{ asset('js/app.js') }}"></script>
 </html>

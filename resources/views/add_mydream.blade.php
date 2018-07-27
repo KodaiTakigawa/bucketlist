@@ -45,6 +45,7 @@
         <button type="submit" class="btn btn-outline-secondary float-right mb-3">Add</button>
       </form>
     </div>
+    @include('layouts.footer')
   </body>
   <script src="{{ asset('js/app.js') }}"></script>
 </html>

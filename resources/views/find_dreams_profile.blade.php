@@ -74,6 +74,7 @@
     <div class="d-flex justify-content-center">
       <a class="twitter-timeline" width="320px" height="400px" data-theme="light" href="https://twitter.com/{{$twitter_screen_name}}?ref_src=twsrc%5Etfw">Tweets by {{$twitter_screen_name}}</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     </div>
+    @include('layouts.footer')
   </body>
   <script src="{{ asset('js/app.js') }}"></script>
   <script type="text/javascript">

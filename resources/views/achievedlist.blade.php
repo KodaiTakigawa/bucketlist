@@ -94,6 +94,7 @@
         </div>
       </div>
     </div>
+    @include('layouts.footer')
   </body>
   <script src="{{ asset('js/app.js') }}"></script>
   <script src="{{ asset('js/update_profile.js') }}"></script>
