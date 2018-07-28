@@ -241,6 +241,8 @@ class MainController extends Controller
       // HTMLを出力
       //echo $html;
 
+      var_dump($obj);
+        exit;
       if ($obj->statuses) {
         var_dump($obj);
         exit;
