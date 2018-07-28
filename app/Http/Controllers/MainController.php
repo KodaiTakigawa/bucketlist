@@ -241,20 +241,15 @@ class MainController extends Controller
       // HTMLを出力
       //echo $html;
 
-      var_dump($obj);
-        exit;
-      if ($obj->statuses) {
-        var_dump($obj);
-        exit;
-        for($i = 0; $i <= count($obj->statuses)-1; $i++){
-          $tweets_for_dream[$i]['text'] = $obj->statuses[$i]->text;
-          $tweets_for_dream[$i]['created_at'] = date("Y/m/d", strtotime($obj->statuses[$i]->created_at) + 32400); //In Japan +32400
-  
-          if (isset($obj->statuses[$i]->entities->media[0]->media_url_https)) {
-            $tweets_for_dream[$i]['media_url'] = $obj->statuses[$i]->entities->media[0]->media_url_https;
-          }
+      for($i = 0; $i <= count($obj->statuses)-1; $i++){
+        $tweets_for_dream[$i]['text'] = $obj->statuses[$i]->text;
+        $tweets_for_dream[$i]['created_at'] = date("Y/m/d", strtotime($obj->statuses[$i]->created_at) + 32400); //In Japan +32400
+
+        if (isset($obj->statuses[$i]->entities->media[0]->media_url_https)) {
+          $tweets_for_dream[$i]['media_url'] = $obj->statuses[$i]->entities->media[0]->media_url_https;
         }
       }
+      
 
       if (!isset($tweets_for_dream)) {
         $tweets_for_dream = [];
