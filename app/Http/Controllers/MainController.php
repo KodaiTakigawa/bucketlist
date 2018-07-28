@@ -14,7 +14,8 @@ class MainController extends Controller
 {
     //
     function index(){
-      return view('index');
+      $random_dreams = Dream::inRandomOrder()->take(5)->get();
+      return view('index', ['random_dreams' => $random_dreams]);
     }
 
     function mypage(Request $request){

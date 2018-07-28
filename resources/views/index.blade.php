@@ -14,7 +14,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Dreamers</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/header.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/header.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/find_dreams.css') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   </head>
   <body>
@@ -66,10 +68,39 @@
 		<h5>【夢や目標を検索】</h5>
 		<p>
 			気になっている夢や目標を検索<br>
-		</p>
-      </div>
-    </div>
+			↓<br>
+			例えば、、、<br>
+		</p>		
+	  </div>
+	</div>
+	@foreach($random_dreams as $random_dream)
+			<div class="row mr-0 ml-0">
+				<div class="card mx-auto">
+				<div class="card-body p-0">
+					<div class="d-flex align-items-center pb-0">
+					<div>
+						@if(isset($random_dream->user->id) && isset($random_dream->user->icon_url))
+						<a href="/find-dreams/profile?id={{$random_dream->user->id}}"><img src="{{$random_dream->user->icon_url}}" alt="Avatar" class="avatar-card float-left"></a>
+						@endif
+					</div>
+					<div>
+						<a href="/find-dreams/detail?id={{$random_dream->id}}" class="text-dark"><p class="mb-0 p-2">{{$random_dream->title}}</p></a>
+					</div>
+					<div class="d-flex ml-auto pb-0 pr-3">
+						<div class="good-button mb-0" id="good_button_{{$random_dream->id}}" data-value="{{$random_dream->id}}">
+						<img src="{{ asset('img/fire.png') }}" style="width">
+						</div>
+						<div class="pt-3">
+						<p id="dream_id_{{$random_dream->id}}">{{$random_dream->good}}</p>
+						</div>
+					</div>
+					</div>
+				</div>
+				</div>
+			</div>
+			@endforeach
     @include('layouts.footer')
   </body>
   <script src="{{ asset('js/app.js') }}"></script>
+  <script src="{{ asset('js/count_good.js') }}"></script>
 </html>
