@@ -43,12 +43,19 @@
         <a class="btn btn-info social-login-btn" href="/login/twitter" role="button">Login with Twitter</a>
       </div>
       @endif
-      <div class="mx-auto mb-5">
+      <div class="mx-auto">
         <h1>Dreamersとは・・・</h1>
         <p>夢や目標に向かっている人達(Dreamer)が<br></p>
         <p>繋がれる場所です。<br></p>
         <p>みんなが持っている未来から繋がれます。</p>
         <p>夢や目標を登録して、仲間を見つけよう！</p>
+      
+		<h2>使い方</h2>
+		<p>ログインして夢を登録しよう</p>
+		<p>#(夢タイトル), ＃Dreamersの<br></p>
+		<p>2つのハッシュタグをつけて</p>
+		<p>ツイートしよう</p>
+		<p>すると、あなたの夢に対する軌跡が見えます。</p>
       </div>
     </div>
     @include('layouts.footer')

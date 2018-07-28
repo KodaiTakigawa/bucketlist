@@ -26,7 +26,7 @@
       <div class="pb-1" style="border-bottom: solid #707070;">
         <div class="d-flex p-3">
           <div class="d-flex justify-content-between">
-            <div class="">
+            <div>
               <h3>{{$dream->title}}</h3>
             </div>
             <div class="d-flex">
@@ -51,10 +51,23 @@
         </p>
       </div>
       <div>
-        <div>
-          <h4>For Dream</h4>
+        <div class="d-flex justify-content-between">
+          <div>
+            <h4>For Dream</h4>
+          </div>
+          <div>
+            <a href="https://twitter.com/intent/tweet" data-hashtags="{{$dream->title}}, Dreamers" class="twitter-hashtag-button" data-show-count="false">Tweet #{{$dream->title}}</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+          </div>
         </div>
         <div>
+<!-- Tweet for dream -->
+        @if(empty($tweets_for_dream))
+        <div class="media border border-info rounded bg-white mb-1 p-1">
+            <div class="media-body">
+              #{{$dream->title}} #DreamersをつけてTweetしよう！<br>
+              →<a href="https://twitter.com/intent/tweet" data-hashtags="{{$dream->title}}, Dreamers" class="twitter-hashtag-button" data-show-count="false">Tweet #{{$dream->title}}</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+        @endif
         @foreach($tweets_for_dream as $tweet)
           <div class="media border border-info rounded bg-white mb-1 p-1">
             <div class="media-body">

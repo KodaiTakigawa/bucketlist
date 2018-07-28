@@ -35,7 +35,7 @@
                   </ul>
               </div>
           @endif
-          <input class="form-control form-control-lg" id="addYourDream" type="text" placeholder="Title" name="title">
+          <input class="form-control form-control-lg" id="addYourDream" type="text" placeholder="Title(Twiiterのハッシュタグ)" name="title">
         </div>
         <div class="form-group">
           <label for="dreamDetail"><h2>Detail</h2></label>

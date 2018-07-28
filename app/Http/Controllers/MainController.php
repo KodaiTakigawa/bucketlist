@@ -193,8 +193,7 @@ class MainController extends Controller
       $request_url = 'https://api.twitter.com/1.1/search/tweets.json';
 
       // userに応じて、tweet取得
-      $request_url = $request_url . '?q=from%3A' . $twitter_screen_name;
-      //. '%20%23' . 'Dreamers' . '%20%23' . $dream->title;
+      $request_url = $request_url . '?q=from%3A' . $twitter_screen_name . '%20%23' . urlencode($dream->title) . '%20%23' . urlencode('Dreamers');
 
       // リクエスト用のコンテキスト
       $context = array(
@@ -239,7 +238,8 @@ class MainController extends Controller
       // $html .= '<p>' . $obj->statuses[0]->text . '</p>';
 
       // HTMLを出力
-      //echo $html ;
+      //echo $html;
+
 
       for($i = 0; $i <= count($obj->statuses)-1; $i++){
         $tweets_for_dream[$i]['text'] = $obj->statuses[$i]->text;
@@ -248,6 +248,10 @@ class MainController extends Controller
         if (isset($obj->statuses[$i]->entities->media[0]->media_url_https)) {
           $tweets_for_dream[$i]['media_url'] = $obj->statuses[$i]->entities->media[0]->media_url_https;
         }
+      }
+
+      if (!isset($tweets_for_dream)) {
+        $tweets_for_dream = [];
       }
 
       $tweets = ['twitter_screen_name' => $twitter_screen_name, 'tweets_for_dream' => $tweets_for_dream];
