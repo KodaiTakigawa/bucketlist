@@ -54,11 +54,19 @@
       <div class="row">
         <div class="card mx-auto">
           <div class="card-body">
-            <a href="/find-dreams/detail?id={{$dream->id}}" class="text-dark float-left"><p>{{$dream->title}}</p></a>
-            <div class="float-right">
-              <div class="good-button">
-                <p class="float-right">{{$dream->good}}</p>
-                <img src="{{ asset('img/fire.png') }}" id='good'>
+            <div class="d-flex pb-0">
+              <div class="mr-auto">
+                <a href="/find-dreams/detail?id={{$dream->id}}" class="text-dark"><p>{{ $dream->title }}</p></a>
+              </div>
+              <div class="d-flex justify-content-end flex-sm-column p-0">
+                <div class="d-flex justify-content-end">
+                  <div class="good-button" id="good_button_{{$dream->id}}" data-value="{{$dream->id}}">
+                    <img src="{{ asset('img/fire.png') }}" id='good'>
+                  </div>
+                  <div>
+                    <p id="dream_id_{{$dream->id}}">{{ $dream->good }}</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -77,6 +85,7 @@
     @include('layouts.footer')
   </body>
   <script src="{{ asset('js/app.js') }}"></script>
+  <script src="{{ asset('js/count_good.js') }}"></script>
   <script type="text/javascript">
     document.getElementById('twitter').addEventListener('click', function(){
       window.open(`https://twitter.com/intent/user?user_id={{$twitter_id}}`, 'newwindow')

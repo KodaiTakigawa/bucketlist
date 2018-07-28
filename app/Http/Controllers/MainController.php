@@ -227,7 +227,7 @@ class MainController extends Controller
       $obj = json_decode( $json ) ;	// オブジェクトに変換
 
       // HTML用
-      $html = '' ;
+      $html = '';
 
       // 検証用にレスポンスヘッダーを出力 [本番環境では不要]
       // $html .= '<h2>取得したデータ</h2>' ;

@@ -60,11 +60,11 @@
               </div>
               <div class="d-flex justify-content-end flex-sm-column p-0">
                 <div class="d-flex justify-content-end">
-                  <div class="good-button">
+                  <div class="good-button" id="good_button_{{$achieved_dream->id}}" data-value="{{$achieved_dream->id}}">
                     <img src="{{ asset('img/fire.png') }}" id='good'>
                   </div>
                   <div>
-                    <p>{{ $achieved_dream->good }}</p>
+                    <p id="dream_id_{{$achieved_dream->id}}">{{ $achieved_dream->good }}</p>
                   </div>
                 </div>
               </div>
@@ -83,4 +83,5 @@
     @include('layouts.footer')
   </body>
   <script src="{{ asset('js/app.js') }}"></script>
+  <script src="{{ asset('js/count_good.js') }}"></script>
 </html>
