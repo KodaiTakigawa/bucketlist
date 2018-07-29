@@ -55,9 +55,11 @@
           <div>
             <h4>For Dream</h4>
           </div>
+          @if($tweets_for_dream)
           <div>
             <a href="https://twitter.com/intent/tweet" data-hashtags="{{$dream->title}},Dreamers" class="twitter-hashtag-button" data-show-count="false">Tweet #{{$dream->title}}</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
           </div>
+          @endif
         </div>
         <div>
 <!-- Tweet for dream -->
